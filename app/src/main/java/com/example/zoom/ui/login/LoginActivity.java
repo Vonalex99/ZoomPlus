@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zoom.MainActivity;
 import com.example.zoom.R;
 import com.example.zoom.ui.login.LoginViewModel;
 import com.example.zoom.ui.login.LoginViewModelFactory;
@@ -67,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
+                    finish();
+                    startActivity(getIntent());
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
@@ -120,9 +124,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
+        String welcome = getString(R.string.welcome);
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

@@ -13,11 +13,10 @@ public class LoginDataSource {
 
         try {
             // TODO: handle loggedInUser authentication
-            LoggedInUser fakeUser =
-                    new LoggedInUser(
-                            java.util.UUID.randomUUID().toString(),
-                            "Jane Doe");
-            return new Result.Success<>(fakeUser);
+            LoggedInUser realUser = new LoggedInUser(username, password);
+            if(username.equals("user@gmail.com") && password.equals("password"))
+                return new Result.Success<>(realUser);
+            return new Result.Error(new IOException("Wrong credentials", new Exception()));
         } catch (Exception e) {
             return new Result.Error(new IOException("Error logging in", e));
         }
