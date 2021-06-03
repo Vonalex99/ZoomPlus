@@ -13,7 +13,7 @@ public class LoginDataSource {
 
         try {
             // TODO: handle loggedInUser authentication
-            LoggedInUser realUser = new LoggedInUser(username, password);
+            LoggedInUser realUser = new LoggedInUser(username, username);
             if(username.equals("user@gmail.com") && password.equals("password"))
                 return new Result.Success<>(realUser);
             return new Result.Error(new IOException("Wrong credentials", new Exception()));
