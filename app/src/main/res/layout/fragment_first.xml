@@ -25,4 +25,71 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@android:color/background_dark"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_action_mic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton6"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@android:color/background_dark"
+        android:src="@drawable/ic_action_video"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton8"
+        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        android:scaleType="fitCenter"/>
+
+    <ImageButton
+        android:id="@+id/imageButton8"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@android:color/background_dark"
+        android:src="@drawable/ic_action_share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton9"
+        app:layout_constraintStart_toEndOf="@+id/imageButton6"
+        android:scaleType="fitCenter"/>
+
+    <ImageButton
+        android:id="@+id/imageButton9"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@android:color/background_dark"
+        android:src="@drawable/ic_action_contacts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton10"
+        app:layout_constraintStart_toEndOf="@+id/imageButton8"
+        android:scaleType="fitCenter"/>
+
+    <ImageButton
+        android:id="@+id/imageButton10"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:backgroundTint="@android:color/background_dark"
+        android:src="@drawable/ic_action_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton9"
+        android:scaleType="fitCenter"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="End"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/white"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
