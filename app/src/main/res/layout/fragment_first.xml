@@ -36,7 +36,8 @@
         android:src="@drawable/ic_action_mic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton6"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="muteSound"/>
 
     <ImageButton
         android:id="@+id/imageButton6"
