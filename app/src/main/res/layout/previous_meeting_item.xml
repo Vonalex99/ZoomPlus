@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#CC817D7D"
+    >
+
+    <TextView
+        android:id="@+id/meeting_name"
+        android:layout_width="352dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+
+        android:layout_marginEnd="32dp"
+        android:background="#CC817D7D"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Meeting name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/meeting_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/meeting_id"
+        android:text="Meeting ID"
+        android:layout_width="352dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="32dp"
+
+        android:background="#CC817D7D"
+        android:clickable="true"
+        android:focusable="true"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/meeting_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meeting_name" />
+
+    <TextView
+        android:id="@+id/meeting_date"
+        android:text="05-04-2021"
+        android:layout_width="352dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="32dp"
+
+        android:layout_marginBottom="8dp"
+        android:background="#CC817D7D"
+        android:clickable="true"
+        android:focusable="true"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meeting_id" />
+
+    <Button
+        android:id="@+id/participants"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="Participants"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meeting_date"
+        />
+
+    <Button
+        android:id="@+id/chat"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="Chat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.613"
+        app:layout_constraintStart_toEndOf="@+id/participants"
+        app:layout_constraintTop_toBottomOf="@+id/meeting_date"
+       />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout >
