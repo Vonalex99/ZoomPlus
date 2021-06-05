@@ -1,0 +1,93 @@
+package com.example.zoom.contacts;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class ContactDataSource {
+
+    private ContactDbHelper db;
+    private SQLiteDatabase database;
+
+    public ContactDataSource(Context context){
+        db = new ContactDbHelper(context);
+    }
+
+    public SQLiteDatabase getDatabase(){
+        return database;
+    }
+
+    public void open() throws SQLException {
+        database = db.getWritableDatabase();
+        //db.onUpgrade(database, 7, 8);
+    }
+
+    public void close() {
+        if (db != null) {
+            db.close();
+        }
+        if (database != null) {
+            database.close();
+        }
+    }
+
+    public void addContact(Contact c){
+        ContentValues values = new ContentValues();
+        values.put(Contact.ContactEntry.COLUMN_ID,c.getId());
+        values.put(Contact.ContactEntry.COLUMN_NAME,c.getName());
+        values.put(Contact.ContactEntry.COLUMN_EMAIL,c.getEmail());
+        database.insert(Contact.ContactEntry.TABLE_NAME,null, values);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<Contact> getContacts() {
+        List<Contact> recipesList = new ArrayList<>();
+
+        try {
+            Cursor cursor = database.query(Contact.ContactEntry.TABLE_NAME, null, null, null, null, null, null);
+
+            for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                recipesList.add(cursorToContact(cursor));
+            }
+        } catch (Exception e) {
+           // Log.e(RecipeDataSource.class.getSimpleName(), e.getMessage());
+        }
+
+        recipesList.sort(new Comparator<Contact>() {
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                return  o1.getName().compareTo(o2.getName());
+            }
+        });
+
+        return recipesList;
+    }
+
+    private Contact cursorToContact(Cursor cursor) {
+        Contact contact = new Contact(null,null);
+        contact.setId(cursor.getInt(cursor
+                .getColumnIndexOrThrow(Contact.ContactEntry.COLUMN_ID)));
+        contact.setName(cursor.getString(cursor
+                .getColumnIndexOrThrow(Contact.ContactEntry.COLUMN_NAME)));
+        contact.setEmail(cursor.getString(cursor
+                .getColumnIndexOrThrow(Contact.ContactEntry.COLUMN_EMAIL)));
+
+
+        return contact;
+
+    }
+
+    public void fix() {
+        db.fix(database);
+    }
+}

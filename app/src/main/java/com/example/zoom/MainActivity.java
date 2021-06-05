@@ -2,15 +2,18 @@ package com.example.zoom;
 
 import android.os.Bundle;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.zoom.contacts.Contact;
+import com.example.zoom.contacts.ContactDataSource;
 import com.example.zoom.databinding.ActivityMain3Binding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +22,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ContactDataSource contactsDS = new ContactDataSource(this);
+        try {
+            contactsDS.open();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        contactsDS.fix();
+
+
+        contactsDS.addContact(new Contact("user2@gmail.com", "user2"));
+        contactsDS.addContact(new Contact("user3@gmail.com", "user3"));
+        contactsDS.addContact(new Contact("user4@gmail.com", "user4"));
+        contactsDS.addContact(new Contact("user5@gmail.com", "user5"));
+       // contactsDS.addContact(new Contact("user6@gmail.com", "user6"));
 
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
