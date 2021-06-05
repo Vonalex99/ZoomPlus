@@ -59,6 +59,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         Contact contact= contacts.get(position);
         holder.title.setText(contact.getName());
         holder.email.setText(contact.getEmail());
+
+        
     }
 
 
