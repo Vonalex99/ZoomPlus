@@ -28,8 +28,8 @@ public class MeetingsDataSource {
         values.put(Meeting.MeetingEntry.COLUMN_NAME, m.getName());
         values.put(Meeting.MeetingEntry.COLUMN_DATE, m.getDate());
         values.put(Meeting.MeetingEntry.COLUMN_HOST_ID, m.getHostId());
-        values.put(Meeting.MeetingEntry.COLUMN_PARTICIPANTS,  m.getParticipants());
-        values.put(Meeting.MeetingEntry.COLUMN_CHAT_ID,  m.getChat().getId());
+        values.put(Meeting.MeetingEntry.COLUMN_PARTICIPANTS,  "participants");
+        values.put(Meeting.MeetingEntry.COLUMN_CHAT_ID,  m.getChatId());
         // Inserting Row
         long id = database.insert(Meeting.MeetingEntry.TABLE_NAME, null, values);
         return id;
@@ -64,7 +64,7 @@ public class MeetingsDataSource {
         values.put(Meeting.MeetingEntry.COLUMN_HOST_ID, m.getHostId());
         values.put(Meeting.MeetingEntry.COLUMN_DATE, m.getDate());
         values.put(Meeting.MeetingEntry.COLUMN_PARTICIPANTS,  m.getParticipants());
-        values.put(Meeting.MeetingEntry.COLUMN_CHAT_ID,  m.getChat().getId());
+        values.put(Meeting.MeetingEntry.COLUMN_CHAT_ID,  m.getChatId());
         // updating row
         database.update(Meeting.MeetingEntry.TABLE_NAME,values,Meeting.MeetingEntry.COLUMN_ID + "= ?", new String[] {String.valueOf(m.getId())});
     }
@@ -77,7 +77,7 @@ public class MeetingsDataSource {
             Cursor cursor = database.rawQuery(query, new String[]{});
 
             for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                meetingList.add(cursorToPost(cursor));
+                meetingList.add(cursorToMeeting(cursor));
             }
         } catch (Exception e) {
             Log.e(MeetingsDataSource.class.getSimpleName(), e.getMessage());
@@ -86,7 +86,7 @@ public class MeetingsDataSource {
         return meetingList;
     }
 
-    private Meeting cursorToPost(Cursor cursor) {
+    private Meeting cursorToMeeting(Cursor cursor) {
         Meeting meeting = new Meeting();
         meeting.setId(cursor.getString(cursor.getColumnIndexOrThrow(Meeting.MeetingEntry.COLUMN_ID)));
         meeting.setName(cursor.getString(cursor.getColumnIndexOrThrow(Meeting.MeetingEntry.COLUMN_NAME)));

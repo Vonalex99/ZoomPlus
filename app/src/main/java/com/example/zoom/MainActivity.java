@@ -28,11 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        try {
-            setUpDummyDatabase();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
 
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -47,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+
+        try {
+            setUpDummyDatabase();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void newMeetingClick(View view) {
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         MeetingsDataSource meetingsDS = new MeetingsDataSource(this);
         meetingsDS.open();
-        contactsDS.fix();
+        meetingsDS.fix();
         meetingsDS.addMeeting(new Meeting("0", "New Meeting", "01/06/2021", "0"));
         meetingsDS.addMeeting(new Meeting("1", "New Meeting1", "02/06/2021", "0"));
         meetingsDS.addMeeting(new Meeting("2", "New Meeting2", "03/06/2021", "0"));

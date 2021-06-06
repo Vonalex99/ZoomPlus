@@ -10,7 +10,7 @@ public class Meeting {
     private String date;
     private String hostId;
     private String participants;
-    private Chat chat;
+    private String chatId;
 
     public Meeting(String id, String name, String date, String hostId){
         setId(id);
@@ -18,7 +18,7 @@ public class Meeting {
         this.date = date;
         this.hostId = hostId;
         participants = "";
-        chat = new Chat(id);
+        chatId = id;
     }
 
     public Meeting(){
@@ -63,8 +63,8 @@ public class Meeting {
         participants = participants + ";" + participant;
     }
 
-    public Chat getChat() {
-        return chat;
+    public String getChatId() {
+        return chatId;
     }
 
     public String getHostId() {

@@ -20,7 +20,7 @@ public class MeetingDbHelper extends SQLiteOpenHelper {
                     Meeting.MeetingEntry.COLUMN_DATE + " VARCHAR2 ," +
                     Meeting.MeetingEntry.COLUMN_HOST_ID + " VARCHAR2," +
                     Meeting.MeetingEntry.COLUMN_PARTICIPANTS + " VARCHAR2 ," +
-                    Meeting.MeetingEntry.COLUMN_CHAT_ID + "INTEGER)";
+                    Meeting.MeetingEntry.COLUMN_CHAT_ID + " VARCHAR2 )";
 
 
     private static final String SQL_DELETE_ENTRIES =

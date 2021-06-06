@@ -31,6 +31,7 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
             int userId = 0;
             meetingsDataSource.open();
             this.meetingList = meetingsDataSource.getMeetings();
+            System.out.println("Meetings list size: " + meetingList.size());
         } catch (Exception e){
         } finally {
            meetingsDataSource.close();
