@@ -1,6 +1,7 @@
 package com.example.zoom.ui.listMeetingParticipants;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,9 +76,8 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-      /*  Contacts contact = folderList.get(position);
+        Contacts contact = participantsList.get(position);
         holder.contactName.setText(contact.getName());
-
         holder.microButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +89,7 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
                     muted = false;
                 }
             }
-        });*/
+        });
     }
 
     @Override
@@ -109,6 +109,11 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
             cameraButton = (ImageButton)view.findViewById(R.id.cam);
             microButton = (ImageButton)view.findViewById(R.id.micro);
             contactName = (TextView)view.findViewById(R.id.contactName);
+
+            String uri = "@drawable/google_contacts";
+            int imageResource = mContext.getResources().getIdentifier(uri, null, mContext.getPackageName());
+            Drawable res = mContext.getResources().getDrawable(imageResource);
+            contactImage.setImageDrawable(res);
         }
     }
 }
