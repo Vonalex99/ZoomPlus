@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -60,7 +62,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         holder.title.setText(contact.getName());
         holder.email.setText(contact.getEmail());
 
+        holder.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "botard", Toast.LENGTH_LONG).show();
+            }
         
+        });
     }
 
 
@@ -74,12 +82,14 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         public TextView title;
         public ImageView image;
         public TextView email;
+        public Button btn;
 
         public ViewHolder(View view) {
             super(view);
             title = (TextView)view.findViewById(R.id.contactName);
             image = (ImageView) view.findViewById(R.id.contactImage);
             email = (TextView)view.findViewById(R.id.contactEmail);
+            btn = (Button) view.findViewById(R.id.inviteToMeetingButton);
 
             java.lang.String uri = "@drawable/google_contacts";
             int imageResource = mContext.getResources().getIdentifier(uri, null, mContext.getPackageName());
