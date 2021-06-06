@@ -18,7 +18,6 @@ import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipantsAdapter.ViewHolder>{
@@ -34,16 +33,19 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
     public ListParticipantsAdapter(Context context) {
         mContext = context;
         meetingsDataSource = new MeetingsDataSource(context);
+        contactsDataSource = new ContactDataSource(context);
        // selectedFolders = new ArrayList<>();
         try {
             String meetingId = "1";
             meetingsDataSource.open();
+            contactsDataSource.open();
             this.meeting = meetingsDataSource.getMeetingbyId(meetingId);
             participantsList = contactsDataSource.getParticipantsById(getParticipantsId());
 
         } catch (Exception e){
         } finally {
             meetingsDataSource.close();
+            contactsDataSource.close();
         }
     }
 
@@ -57,12 +59,17 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
 
     private List<Integer> getParticipantsId(){
         String participants = meeting.getParticipants();
-        String[] p = participants.split(";");
-        List<Integer> ids = new ArrayList<Integer>();
-        ids.add(Integer.getInteger(meeting.getHostId()));
-        for(String part : p ){
-            ids.add(Integer.getInteger(part));
+
+        List<Integer> ids = new ArrayList<>();
+        ids.add(Integer.parseInt(meeting.getHostId()));
+
+        if(participants != null){
+            String[] p = participants.split(";");
+
+            for(String part : p )
+                ids.add(Integer.parseInt(part));
         }
+
         return ids;
     }
 
