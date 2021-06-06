@@ -1,8 +1,10 @@
 package com.example.zoom;
 
+import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.example.zoom.ui.listMeetingParticipants.ListParticipantsDialog;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,10 +59,11 @@ public class NewMeetingActivity extends AppCompatActivity {
         }
     }
 
-    private void listParticipants(){
+    public void listParticipants(View view){
+        ListParticipantsDialog listParticipantsDialog = new ListParticipantsDialog();
+        listParticipantsDialog.show(getSupportFragmentManager(), "ListParticipantsDialog");
 
 
     }
-
 
 }

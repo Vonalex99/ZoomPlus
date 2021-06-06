@@ -1,5 +1,6 @@
 package com.example.zoom.ui.listMeetingParticipants;
 
+import android.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,8 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.zoom.R;
 import com.example.zoom.db.MeetingsDataSource;
 
-import java.util.List;
-
 public class ListParticipantsDialog extends DialogFragment {
     private View mView;
     private RecyclerView recyclerView;
@@ -31,8 +30,7 @@ public class ListParticipantsDialog extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-
+    
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

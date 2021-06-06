@@ -90,7 +90,7 @@ public class MeetingsDataSource {
             List<Meeting> list = getMeetings();
 
             for(Meeting m : list)
-                if(m.getId() == id)
+                if(m.getId().equals(id))
                     return m;
 
             return null;

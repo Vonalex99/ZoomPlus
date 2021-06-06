@@ -70,7 +70,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton10"
         app:layout_constraintStart_toEndOf="@+id/imageButton8"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:onClick="listParticipants"/>
 
     <ImageButton
         android:id="@+id/imageButton10"

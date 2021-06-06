@@ -36,9 +36,11 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
         meetingsDataSource = new MeetingsDataSource(context);
        // selectedFolders = new ArrayList<>();
         try {
-            String meetingId = "0";
+            String meetingId = "1";
             meetingsDataSource.open();
             this.meeting = meetingsDataSource.getMeetingbyId(meetingId);
+            participantsList = contactsDataSource.getParticipantsById(getParticipantsId());
+
         } catch (Exception e){
         } finally {
             meetingsDataSource.close();

@@ -73,7 +73,7 @@ public class ContactDataSource {
         return contactsList;
     }
 
-    public List<Contacts> getById(List<Integer> contacts){
+    public List<Contacts> getParticipantsById(List<Integer> contacts){
         List<Contacts> c = getContacts();
         List<Contacts> contactsList = new ArrayList<>();
         for (Contacts cont : c)
