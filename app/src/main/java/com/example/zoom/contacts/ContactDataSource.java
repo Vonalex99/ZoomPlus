@@ -51,27 +51,38 @@ public class ContactDataSource {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Contacts> getContacts() {
-        List<Contacts> recipesList = new ArrayList<>();
+        List<Contacts> contactsList = new ArrayList<>();
 
         try {
             Cursor cursor = database.query(Contacts.ContactEntry.TABLE_NAME, null, null, null, null, null, null);
 
             for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                recipesList.add(cursorToContact(cursor));
+                contactsList.add(cursorToContact(cursor));
             }
         } catch (Exception e) {
            // Log.e(RecipeDataSource.class.getSimpleName(), e.getMessage());
         }
 
-        recipesList.sort(new Comparator<Contacts>() {
+        contactsList.sort(new Comparator<Contacts>() {
             @Override
             public int compare(Contacts o1, Contacts o2) {
                 return  o1.getName().compareTo(o2.getName());
             }
         });
 
-        return recipesList;
+        return contactsList;
     }
+
+    public List<Contacts> getById(List<Integer> contacts){
+        List<Contacts> c = getContacts();
+        List<Contacts> contactsList = new ArrayList<>();
+        for (Contacts cont : c)
+            for(Integer id: contacts)
+                if (cont.getId() == id)
+                    contactsList.add(cont);
+        return contactsList;
+    }
+
 
     private Contacts cursorToContact(Cursor cursor) {
         Contacts contact = new Contacts(null,null);

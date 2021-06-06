@@ -56,7 +56,12 @@ public class NewMeetingActivity extends AppCompatActivity {
             muted = false;
         }
 
+    }
+
+    private void listParticipants(){
 
 
     }
+
+
 }

@@ -86,6 +86,16 @@ public class MeetingsDataSource {
         return meetingList;
     }
 
+    public Meeting getMeetingbyId(String id){
+            List<Meeting> list = getMeetings();
+
+            for(Meeting m : list)
+                if(m.getId() == id)
+                    return m;
+
+            return null;
+    }
+
     private Meeting cursorToMeeting(Cursor cursor) {
         Meeting meeting = new Meeting();
         meeting.setId(cursor.getString(cursor.getColumnIndexOrThrow(Meeting.MeetingEntry.COLUMN_ID)));

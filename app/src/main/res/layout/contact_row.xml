@@ -14,6 +14,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="284dp"
+        android:adjustViewBounds="false"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="@+id/contactEmail"
         app:layout_constraintHorizontal_bias="0.571"
@@ -63,6 +64,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="+"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconGravity="textStart"
+        app:iconPadding="-8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/contactName" />
 
