@@ -55,7 +55,6 @@ public class NewMeetingActivity extends AppCompatActivity {
             btn.setImageResource(R.drawable.ic_action_mic);
             muted = false;
         }
-
     }
 
     private void listParticipants(){
