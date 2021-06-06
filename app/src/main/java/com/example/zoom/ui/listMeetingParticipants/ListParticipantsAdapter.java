@@ -59,16 +59,15 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
 
     private List<Integer> getParticipantsId(){
         String participants = meeting.getParticipants();
-        String[] p = new String[1];
 
         List<Integer> ids = new ArrayList<>();
-        ids.add(Integer.getInteger(meeting.getHostId()));
+        ids.add(Integer.parseInt(meeting.getHostId()));
 
         if(participants != null){
-             p = participants.split(";");
+            String[] p = participants.split(";");
 
             for(String part : p )
-                ids.add(Integer.getInteger(part));
+                ids.add(Integer.parseInt(part));
         }
 
         return ids;
