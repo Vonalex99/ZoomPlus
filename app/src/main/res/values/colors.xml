@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--color name="colorPrimary">#008577</color-->
-    <color name="colorPrimary">#403c4c</color>
+    <color name="colorPrimary">#2D8CFF</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#403c4c</color>
 
     <color name="zoomOrange">#ff742f</color>
     <color name="zoomBlue">#0e72ec</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#ffffff</color>
+    <color name="meeting_item_bg">#CC817D7D</color>
 
 
 </resources>

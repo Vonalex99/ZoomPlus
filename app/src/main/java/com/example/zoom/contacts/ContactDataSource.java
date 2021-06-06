@@ -40,21 +40,21 @@ public class ContactDataSource {
         }
     }
 
-    public void addContact(Contact c){
+    public void addContact(Contacts c){
         ContentValues values = new ContentValues();
-        values.put(Contact.ContactEntry.COLUMN_ID,c.getId());
-        values.put(Contact.ContactEntry.COLUMN_NAME,c.getName());
-        values.put(Contact.ContactEntry.COLUMN_EMAIL,c.getEmail());
-        database.insert(Contact.ContactEntry.TABLE_NAME,null, values);
+        values.put(Contacts.ContactEntry.COLUMN_ID,c.getId());
+        values.put(Contacts.ContactEntry.COLUMN_NAME,c.getName());
+        values.put(Contacts.ContactEntry.COLUMN_EMAIL,c.getEmail());
+        database.insert(Contacts.ContactEntry.TABLE_NAME,null, values);
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Contact> getContacts() {
-        List<Contact> recipesList = new ArrayList<>();
+    public List<Contacts> getContacts() {
+        List<Contacts> recipesList = new ArrayList<>();
 
         try {
-            Cursor cursor = database.query(Contact.ContactEntry.TABLE_NAME, null, null, null, null, null, null);
+            Cursor cursor = database.query(Contacts.ContactEntry.TABLE_NAME, null, null, null, null, null, null);
 
             for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                 recipesList.add(cursorToContact(cursor));
@@ -63,9 +63,9 @@ public class ContactDataSource {
            // Log.e(RecipeDataSource.class.getSimpleName(), e.getMessage());
         }
 
-        recipesList.sort(new Comparator<Contact>() {
+        recipesList.sort(new Comparator<Contacts>() {
             @Override
-            public int compare(Contact o1, Contact o2) {
+            public int compare(Contacts o1, Contacts o2) {
                 return  o1.getName().compareTo(o2.getName());
             }
         });
@@ -73,14 +73,14 @@ public class ContactDataSource {
         return recipesList;
     }
 
-    private Contact cursorToContact(Cursor cursor) {
-        Contact contact = new Contact(null,null);
+    private Contacts cursorToContact(Cursor cursor) {
+        Contacts contact = new Contacts(null,null);
         contact.setId(cursor.getInt(cursor
-                .getColumnIndexOrThrow(Contact.ContactEntry.COLUMN_ID)));
+                .getColumnIndexOrThrow(Contacts.ContactEntry.COLUMN_ID)));
         contact.setName(cursor.getString(cursor
-                .getColumnIndexOrThrow(Contact.ContactEntry.COLUMN_NAME)));
+                .getColumnIndexOrThrow(Contacts.ContactEntry.COLUMN_NAME)));
         contact.setEmail(cursor.getString(cursor
-                .getColumnIndexOrThrow(Contact.ContactEntry.COLUMN_EMAIL)));
+                .getColumnIndexOrThrow(Contacts.ContactEntry.COLUMN_EMAIL)));
 
 
         return contact;

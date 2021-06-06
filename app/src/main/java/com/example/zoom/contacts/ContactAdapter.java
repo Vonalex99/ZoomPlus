@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder>{
 
-    private List<Contact> contacts;
+    private List<Contacts> contacts;
     private Bundle mBundle;
     private Context mContext;
     private Fragment mFragment;
@@ -56,7 +56,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        Contact contact= contacts.get(position);
+        Contacts contact= contacts.get(position);
         holder.title.setText(contact.getName());
         holder.email.setText(contact.getEmail());
 
@@ -81,7 +81,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             image = (ImageView) view.findViewById(R.id.contactImage);
             email = (TextView)view.findViewById(R.id.contactEmail);
 
-            String uri = "@drawable/google_contacts";
+            java.lang.String uri = "@drawable/google_contacts";
             int imageResource = mContext.getResources().getIdentifier(uri, null, mContext.getPackageName());
             Drawable res = mContext.getResources().getDrawable(imageResource);
             image.setImageDrawable(res);

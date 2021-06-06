@@ -56,7 +56,7 @@ public class ContactFragment extends Fragment {
         });
     }
 
-
+/*
     viewHolder.image.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -68,5 +68,5 @@ public class ContactFragment extends Fragment {
             else if(layout == 2)
                 fragmentJumpFolder(recipe);
         }
-    })
+    })*/
 }
