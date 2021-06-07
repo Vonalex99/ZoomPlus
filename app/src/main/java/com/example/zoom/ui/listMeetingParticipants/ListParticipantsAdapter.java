@@ -63,7 +63,6 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
         String participants = meeting.getParticipants();
 
         List<Integer> ids = new ArrayList<>();
-        //esta a falar aqui por algum motivo desconhecido
         ids.add(Integer.parseInt(meeting.getHostId()));
 
         if(participants != null){
