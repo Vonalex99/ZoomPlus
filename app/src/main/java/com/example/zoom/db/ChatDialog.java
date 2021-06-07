@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zoom.R;
-import com.example.zoom.ui.listMeetingParticipants.ListParticipantsAdapter;
 
 public class ChatDialog extends DialogFragment {
     private View mView;
@@ -53,9 +52,9 @@ public class ChatDialog extends DialogFragment {
     }
 
     private void updateView() {
-        chatDialogAdapter = new ChatDialogAdapter(getContext());
+        /*chatDialogAdapter = new ChatDialogAdapter(getContext());
         chatDialogAdapter.setHasStableIds(true);
         recyclerView.setAdapter(chatDialogAdapter);
-        chatDialogAdapter.notifyDataSetChanged();
+        chatDialogAdapter.notifyDataSetChanged();*/
     }
 }

@@ -78,7 +78,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(mContext, "botard", Toast.LENGTH_LONG).show();
+
             }
         
         });

@@ -85,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
         meetingsDS.addMeeting(new Meeting("7", "New Meeting7", "Fri, 04/07/2021", "0"));
         meetingsDS.addMeeting(new Meeting("8", "New Meeting8", "Fri, 04/07/2021", "0"));
         meetingsDS.addMeeting(new Meeting("9", "New Meeting9", "Fri, 04/07/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("10", "New Meeting10", "Fri, 04/07/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("11", "New Meeting11", "Fri, 04/07/2021", "0"));
-
 
     }
 }

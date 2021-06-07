@@ -2,12 +2,10 @@ package com.example.zoom.db;
 
 import android.content.Context;
 
-import com.example.zoom.ui.contacts.ContactDataSource;
-
 public class ChatDialogAdapter {
     private Context mContext;
 
-    public ChatDialogAdapter(Context context) {
+   /* public ChatDialogAdapter(Context context) {
         mContext = context;
         meetingsDataSource = new MeetingsDataSource(context);
         contactsDataSource = new ContactDataSource(context);
@@ -24,5 +22,5 @@ public class ChatDialogAdapter {
             meetingsDataSource.close();
             contactsDataSource.close();
         }
-    }
+    }*/
 }
