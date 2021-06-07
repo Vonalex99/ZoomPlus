@@ -31,13 +31,13 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
     private Meeting meeting;
     private boolean muted = false;
 
-    public ListParticipantsAdapter(Context context) {
+    public ListParticipantsAdapter(Context context, String meetingId) {
         mContext = context;
         meetingsDataSource = new MeetingsDataSource(context);
         contactsDataSource = new ContactDataSource(context);
        // selectedFolders = new ArrayList<>();
         try {
-            String meetingId = "1";
+          //  String meetingId = "1";
             meetingsDataSource.open();
             contactsDataSource.open();
             this.meeting = meetingsDataSource.getMeetingbyId(meetingId);
@@ -62,6 +62,7 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
         String participants = meeting.getParticipants();
 
         List<Integer> ids = new ArrayList<>();
+        //esta a falar aqui por algum motivo desconhecido
         ids.add(Integer.parseInt(meeting.getHostId()));
 
         if(participants != null){

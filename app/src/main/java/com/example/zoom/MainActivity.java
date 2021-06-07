@@ -15,6 +15,8 @@ import com.example.zoom.ui.contacts.ContactDataSource;
 import com.example.zoom.databinding.ActivityMain3Binding;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
+import com.example.zoom.ui.JoinMeeting.JoinMeetingDialog;
+import com.example.zoom.ui.listMeetingParticipants.ListParticipantsDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.sql.SQLException;
@@ -54,11 +56,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void joinMeeting(View view) {
+        JoinMeetingDialog joinMeetingDialog = new JoinMeetingDialog();
+        joinMeetingDialog.show(getSupportFragmentManager(), "JoinMeetingDialog");
 
+    }
     private void setUpDummyDatabase() throws SQLException {
         ContactDataSource contactsDS = new ContactDataSource(this);
         contactsDS.open();
         contactsDS.fix();
+        contactsDS.addContact(new Contacts("user@gmail.com", "user"));
         contactsDS.addContact(new Contacts("user2@gmail.com", "user2"));
         contactsDS.addContact(new Contacts("user3@gmail.com", "user3"));
         contactsDS.addContact(new Contacts("user4@gmail.com", "user4"));

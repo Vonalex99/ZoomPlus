@@ -66,7 +66,8 @@
         app:layout_constraintEnd_toStartOf="@+id/schedule_button"
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintVertical_bias="0.0"
+        android:onClick="joinMeeting"/>
 
     <ImageButton
         android:id="@+id/schedule_button"

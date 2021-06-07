@@ -19,6 +19,15 @@ public class Meeting {
         chatId = id;
     }
 
+    public Meeting(String id, String name, String date, String participant ,String hostId){
+        setId(id);
+        this.name = name;
+        this.date = date;
+        this.hostId = hostId;
+        participants = participant;
+        chatId = id;
+    }
+
     public Meeting(){
 
     }

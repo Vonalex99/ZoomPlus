@@ -1,9 +1,12 @@
 package com.example.zoom;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.example.zoom.db.Meeting;
+import com.example.zoom.db.MeetingsDataSource;
 import com.example.zoom.ui.listMeetingParticipants.ListParticipantsDialog;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,7 +28,8 @@ public class NewMeetingActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityNewMeetingBinding binding;
     private boolean muted = false;
-
+    private String id;
+    private MeetingsDataSource meetingsDataSource;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +39,17 @@ public class NewMeetingActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
+        id = getIntent().getStringExtra("MEETING_ID");
+        if(id == null) {
+            meetingsDataSource = new MeetingsDataSource(this);
+            meetingsDataSource.open();
+            long i = meetingsDataSource.addMeeting(new Meeting("0", "New Meeting", "Fri, 15/06/2021", "0"));
+            id = String.valueOf(i);
+        }
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_new_meeting);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
     }
 
     @Override
@@ -60,7 +71,7 @@ public class NewMeetingActivity extends AppCompatActivity {
     }
 
     public void listParticipants(View view){
-        ListParticipantsDialog listParticipantsDialog = new ListParticipantsDialog();
+        ListParticipantsDialog listParticipantsDialog = new ListParticipantsDialog(id);
         listParticipantsDialog.show(getSupportFragmentManager(), "ListParticipantsDialog");
 
 

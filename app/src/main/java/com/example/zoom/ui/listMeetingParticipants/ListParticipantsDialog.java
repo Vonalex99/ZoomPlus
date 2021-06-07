@@ -25,12 +25,17 @@ public class ListParticipantsDialog extends DialogFragment {
     private RecyclerView recyclerView;
     private ListParticipantsAdapter participantsAdapter;
     private MeetingsDataSource meetingsDataSource;
+    private String meetingId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    
+
+    public ListParticipantsDialog(String id){
+        meetingId = id;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -43,49 +48,7 @@ public class ListParticipantsDialog extends DialogFragment {
 
         meetingsDataSource = new MeetingsDataSource(getContext());
         meetingsDataSource.open();
-    //    folderRecipeDataSource = new FolderRecipeDataSource(getContext());
-     //   folderRecipeDataSource.open();
 
-   /*     cancelButton = mView.findViewById(R.id.cancel_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss();
-            }
-        });
-
-        saveButton = mView.findViewById(R.id.save_button);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                List<Integer> folderIds = folderAdapter.getSelectedFolders();
-                if(!folderIds.isEmpty()) {
-                    int recipeId = toSave.getId();
-                    for (Integer folderId : folderIds) {
-                        FolderRecipe fr = new FolderRecipe(folderId, recipeId);
-                        folderRecipeDataSource.addFolderRecipe(fr);
-                    }
-                    getDialog().dismiss();
-
-
-                    Toast.makeText(getContext(), "Recipe saved!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                    Toast.makeText(getContext(), "Please select a folder!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        addFolderButton = mView.findViewById(R.id.add_folder_button);
-        addFolderButton.setColorFilter(Color.WHITE);
-        addFolderButton.setScaleType(ImageView.ScaleType.CENTER);
-        addFolderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                folderDataSource.addFolder(new Folder(0, "New Folder", toSave.getImage()));
-                updateView();
-            }
-        });
-*/
         updateView();
         return mView;
     }
@@ -97,7 +60,7 @@ public class ListParticipantsDialog extends DialogFragment {
     }
 
     private void updateView() {
-        participantsAdapter = new ListParticipantsAdapter(getContext());
+        participantsAdapter = new ListParticipantsAdapter(getContext(), meetingId);
         participantsAdapter.setHasStableIds(true);
         recyclerView.setAdapter(participantsAdapter);
         participantsAdapter.notifyDataSetChanged();

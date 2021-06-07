@@ -110,6 +110,12 @@ public class MeetingsDataSource {
                 if(m.getId().equals(id))
                     return m;
 
+            list = getScheduledMeetings();
+
+            for(Meeting m : list)
+                if(m.getId().equals(id))
+                    return m;
+
             return null;
     }
 
@@ -124,20 +130,5 @@ public class MeetingsDataSource {
         return meeting;
 
     }
-/*
-    public Folder getPostById(long id){
-        Folder card = null;
-        db.getReadableDatabase();
-        try {
-            String query = "SELECT * FROM " + Folder.FolderEntry.TABLE_NAME + " WHERE " + Folder.FolderEntry.COLUMN_ID + "=?";
-            Cursor cursor = database.rawQuery(query, new String[]{String.valueOf(id)});
-            if (cursor.moveToFirst())
-                card = cursorToPost(cursor);
-        } catch (Exception e) {
-            Log.e(RecipeDataSource.class.getSimpleName(), e.getMessage());
-        }
-        db.close();
-        return card;
-    }*/
 
 }
