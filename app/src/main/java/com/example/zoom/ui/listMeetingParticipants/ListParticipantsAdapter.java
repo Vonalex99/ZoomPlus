@@ -77,7 +77,13 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Contacts contact = participantsList.get(position);
-        holder.contactName.setText(contact.getName());
+        String name = contact.getName();
+
+        if(position == 0)
+            name = contact.getName() + " (Host)";
+
+        holder.contactName.setText(name);
+
         holder.microButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
