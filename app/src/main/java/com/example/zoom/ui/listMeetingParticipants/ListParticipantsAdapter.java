@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -96,6 +97,25 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
                 }
             }
         });
+
+        holder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(progress == 0)
+                    holder.microButton.setImageResource(R.drawable.ic_action_mute);
+                else
+                    holder.microButton.setImageResource(R.drawable.ic_action_mic);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @Override
@@ -108,6 +128,7 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
         private ImageButton cameraButton;
         private ImageButton microButton;
         private TextView contactName;
+        private SeekBar seekBar;
 
         public ViewHolder(View view) {
             super(view);
@@ -115,6 +136,8 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
             cameraButton = (ImageButton)view.findViewById(R.id.cam);
             microButton = (ImageButton)view.findViewById(R.id.micro);
             contactName = (TextView)view.findViewById(R.id.contactName);
+            seekBar = (SeekBar)view.findViewById(R.id.seekBar);
+
 
             String uri = "@drawable/google_contacts";
             int imageResource = mContext.getResources().getIdentifier(uri, null, mContext.getPackageName());

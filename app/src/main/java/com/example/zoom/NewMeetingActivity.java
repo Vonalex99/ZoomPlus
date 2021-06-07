@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
@@ -25,11 +26,11 @@ public class NewMeetingActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityNewMeetingBinding binding;
     private boolean muted = false;
+    private boolean cameraOff = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityNewMeetingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -66,4 +67,18 @@ public class NewMeetingActivity extends AppCompatActivity {
 
     }
 
+    public void stopCamera(View view) {
+        ImageButton btn = (ImageButton)findViewById(R.id.imageButton6);
+        if(!cameraOff){
+            btn.setImageResource(R.drawable.ic_action_video_off);
+            cameraOff = true;
+        }else{
+            btn.setImageResource(R.drawable.ic_action_video);
+            cameraOff = false;
+        }
+    }
+
+    public void exitMeeting(View view) {
+        finish();
+    }
 }
