@@ -59,12 +59,25 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         Contacts contact= contacts.get(position);
-        holder.title.setText(contact.getName());
-        holder.email.setText(contact.getEmail());
+        if(contact.getName().equals("user")) {
+            holder.title.setVisibility(View.GONE);
+            holder.email.setVisibility(View.GONE);
+            holder.image.setVisibility(View.GONE);
+            holder.btn.setVisibility(View.GONE);
+        } else {
+
+            holder.title.setVisibility(View.VISIBLE);
+            holder.email.setVisibility(View.VISIBLE);
+            holder.image.setVisibility(View.VISIBLE);
+            holder.btn.setVisibility(View.VISIBLE);
+            holder.title.setText(contact.getName());
+            holder.email.setText(contact.getEmail());
+        }
 
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Toast.makeText(mContext, "botard", Toast.LENGTH_LONG).show();
             }
         

@@ -2,6 +2,8 @@ package com.example.zoom.db;
 
 public class Chat {
     private String id;
+    private String orig;
+    private String dest;
 
 
     public Chat(String id) {
