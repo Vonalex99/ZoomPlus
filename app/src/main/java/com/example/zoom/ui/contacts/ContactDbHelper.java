@@ -1,4 +1,4 @@
-package com.example.zoom.contacts;
+package com.example.zoom.ui.contacts;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

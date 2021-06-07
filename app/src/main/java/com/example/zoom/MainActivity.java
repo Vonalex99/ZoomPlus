@@ -10,8 +10,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.zoom.contacts.Contacts;
-import com.example.zoom.contacts.ContactDataSource;
+import com.example.zoom.ui.contacts.Contacts;
+import com.example.zoom.ui.contacts.ContactDataSource;
 import com.example.zoom.databinding.ActivityMain3Binding;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
@@ -68,10 +67,17 @@ public class MainActivity extends AppCompatActivity {
         MeetingsDataSource meetingsDS = new MeetingsDataSource(this);
         meetingsDS.open();
         meetingsDS.fix();
-        meetingsDS.addMeeting(new Meeting("0", "New Meeting", "01/06/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("1", "New Meeting1", "02/06/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("2", "New Meeting2", "03/06/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("3", "New Meeting3", "04/06/2021", "0"));
+        //past meetings
+        meetingsDS.addMeeting(new Meeting("0", "New Meeting", "Tue, 01/06/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("1", "New Meeting1", "Wed, 02/06/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("2", "New Meeting2", "Thu, 03/06/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("3", "New Meeting3", "Fri, 04/06/2021", "0"));
+        //future meetings
+        meetingsDS.addMeeting(new Meeting("4", "New Meeting4", "Tue, 01/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("5", "New Meeting5", "Wed, 02/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("6", "New Meeting6", "Thu, 03/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("7", "New Meeting7", "Fri, 04/07/2021", "0"));
+
 
     }
 }

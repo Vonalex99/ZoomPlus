@@ -5,12 +5,14 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#403c4c</color>
 
+
+
     <color name="zoomOrange">#ff742f</color>
     <color name="zoomBlue">#0e72ec</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#ffffff</color>
-    <color name="meeting_item_bg">#CC817D7D</color>
-
+    <!--color name="meeting_item_bg">#CC817D7D</color-->
+    <color name="meeting_item_bg">#E4E4ED</color>
 
 </resources>

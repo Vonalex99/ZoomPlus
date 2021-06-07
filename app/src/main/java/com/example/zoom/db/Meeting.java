@@ -2,8 +2,6 @@ package com.example.zoom.db;
 
 import android.provider.BaseColumns;
 
-import com.example.zoom.contacts.Contacts;
-
 public class Meeting {
     private String id;
     private String name;

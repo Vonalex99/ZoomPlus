@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zoom.R;
-import com.example.zoom.contacts.ContactDataSource;
-import com.example.zoom.contacts.Contacts;
+import com.example.zoom.ui.contacts.ContactDataSource;
+import com.example.zoom.ui.contacts.Contacts;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
 

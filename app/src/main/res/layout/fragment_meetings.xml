@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_alignBottom="@+id/mobile_navigation2"
     android:id="@+id/activity_tab"
+    android:background="@color/white"
     tools:context=".ui.meetings.MeetingsFragment">
 
 

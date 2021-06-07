@@ -69,11 +69,28 @@ public class MeetingsDataSource {
         database.update(Meeting.MeetingEntry.TABLE_NAME,values,Meeting.MeetingEntry.COLUMN_ID + "= ?", new String[] {String.valueOf(m.getId())});
     }
 
-    public List<Meeting> getMeetings(){
+    public List<Meeting> getPreviousMeetings(){
         List<Meeting> meetingList = new ArrayList<>();
 
         try {
-            String query = "SELECT * FROM " + Meeting.MeetingEntry.TABLE_NAME;
+            String query = "SELECT * FROM " + Meeting.MeetingEntry.TABLE_NAME  + " WHERE " + Meeting.MeetingEntry.COLUMN_ID + "<5";
+            Cursor cursor = database.rawQuery(query, new String[]{});
+
+            for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                meetingList.add(cursorToMeeting(cursor));
+            }
+        } catch (Exception e) {
+            Log.e(MeetingsDataSource.class.getSimpleName(), e.getMessage());
+        }
+
+        return meetingList;
+    }
+
+    public List<Meeting> getScheduledMeetings(){
+        List<Meeting> meetingList = new ArrayList<>();
+
+        try {
+            String query = "SELECT * FROM " + Meeting.MeetingEntry.TABLE_NAME + " WHERE " + Meeting.MeetingEntry.COLUMN_ID + ">=5";
             Cursor cursor = database.rawQuery(query, new String[]{});
 
             for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
@@ -87,7 +104,7 @@ public class MeetingsDataSource {
     }
 
     public Meeting getMeetingbyId(String id){
-            List<Meeting> list = getMeetings();
+            List<Meeting> list = getPreviousMeetings();
 
             for(Meeting m : list)
                 if(m.getId().equals(id))

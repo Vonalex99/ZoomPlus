@@ -11,12 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.zoom.R;
-import com.example.zoom.contacts.ContactAdapter;
-import com.example.zoom.ui.meetings.PreviousMeetings.PreviousMeetingsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.

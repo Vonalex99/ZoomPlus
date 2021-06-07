@@ -1,4 +1,4 @@
-package com.example.zoom.ui.meetings.PreviousMeetings;
+package com.example.zoom.ui.meetings;
 
 
 import android.content.Context;
@@ -12,25 +12,26 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zoom.R;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
-import com.example.zoom.R;
+
 import java.util.List;
 
-public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetingsAdapter.ViewHolder> {
+public class ScheduledMeetingsAdapter extends RecyclerView.Adapter<ScheduledMeetingsAdapter.ViewHolder> {
     private List<Meeting> meetingList;
     private MeetingsDataSource meetingsDataSource;
     private Bundle mBundle;
     private Context mContext;
     private Fragment mFragment;
 
-    public PreviousMeetingsAdapter(Context context) {
+    public ScheduledMeetingsAdapter(Context context) {
         mContext = context;
         meetingsDataSource = new MeetingsDataSource(context);
         try {
             int userId = 0;
             meetingsDataSource.open();
-            this.meetingList = meetingsDataSource.getMeetings();
+            this.meetingList = meetingsDataSource.getScheduledMeetings();
             System.out.println("Meetings list size: " + meetingList.size());
         } catch (Exception e){
         } finally {
@@ -43,8 +44,8 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.previous_meeting_item, parent, false);
-        return new PreviousMeetingsAdapter.ViewHolder(view);
+                inflate(R.layout.scheduled_meeting_item, parent, false);
+        return new ScheduledMeetingsAdapter.ViewHolder(view);
     }
 
     @Override
@@ -74,9 +75,9 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
 
         public ViewHolder(View view) {
             super(view);
-            meetingName = (TextView)view.findViewById(R.id.prev_meeting_name);
-            meetingId = (TextView)view.findViewById(R.id.prev_meeting_id);
-            meetingDate = (TextView)view.findViewById(R.id.prev_meeting_date);
+            meetingName = (TextView)view.findViewById(R.id.scheduled_meeting_name);
+            meetingId = (TextView)view.findViewById(R.id.scheduled_meeting_id);
+            meetingDate = (TextView)view.findViewById(R.id.scheduled_meeting_date);
         }
     }
 }

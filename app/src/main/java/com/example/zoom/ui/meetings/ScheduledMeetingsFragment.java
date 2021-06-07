@@ -1,8 +1,12 @@
 package com.example.zoom.ui.meetings;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,9 @@ import com.example.zoom.R;
  * create an instance of this fragment.
  */
 public class ScheduledMeetingsFragment extends Fragment {
+    RecyclerView recyclerView;
+    View mView;
+    ScheduledMeetingsAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +68,21 @@ public class ScheduledMeetingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scheduled_meetings, container, false);
+        mView =  inflater.inflate(R.layout.fragment_scheduled_meetings, container, false);
+        recyclerView = (RecyclerView) mView.findViewById(R.id.scheduled_meetings_recycler);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        updateView();
+
+        return mView;
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void updateView() {
+        adapter = new ScheduledMeetingsAdapter(getContext());
+        adapter.setHasStableIds(true);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
