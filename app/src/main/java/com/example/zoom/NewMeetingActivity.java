@@ -1,7 +1,6 @@
 package com.example.zoom;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -28,8 +27,10 @@ public class NewMeetingActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityNewMeetingBinding binding;
     private boolean muted = false;
+    private boolean cameraOff = false;
     private String id;
     private MeetingsDataSource meetingsDataSource;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class NewMeetingActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_new_meeting);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
     }
 
     @Override
@@ -75,6 +77,20 @@ public class NewMeetingActivity extends AppCompatActivity {
         listParticipantsDialog.show(getSupportFragmentManager(), "ListParticipantsDialog");
 
 
+    }
+    public void stopCamera(View view) {
+        ImageButton btn = (ImageButton)findViewById(R.id.imageButton6);
+        if(!cameraOff){
+            btn.setImageResource(R.drawable.ic_action_video_off);
+            cameraOff = true;
+        }else{
+            btn.setImageResource(R.drawable.ic_action_video);
+            cameraOff = false;
+        }
+    }
+
+    public void exitMeeting(View view) {
+        finish();
     }
 
 }

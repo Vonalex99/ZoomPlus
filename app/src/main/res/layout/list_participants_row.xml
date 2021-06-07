@@ -3,61 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/contactImage"
         android:layout_width="75dp"
         android:layout_height="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/contactName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/contactName"
-        android:layout_width="244dp"
-        android:layout_height="35dp"
+        android:layout_width="145dp"
+        android:layout_height="28dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="25dp"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/micro"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/contactImage" />
+        app:layout_constraintStart_toEndOf="@+id/contactImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/micro"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:adjustViewBounds="true"
         android:backgroundTint="@android:color/background_dark"
         android:onClick="muteSound"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_action_mic"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cam"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.789" />
+        app:layout_constraintStart_toEndOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/contactName" />
 
     <ImageButton
         android:id="@+id/cam"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:backgroundTint="@android:color/background_dark"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_action_video"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/micro"
+        app:layout_constraintTop_toBottomOf="@+id/contactName"
         tools:ignore="MissingConstraints" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="150dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactName"
+        android:progress="100"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
