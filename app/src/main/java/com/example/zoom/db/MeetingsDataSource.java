@@ -28,7 +28,7 @@ public class MeetingsDataSource {
         values.put(Meeting.MeetingEntry.COLUMN_NAME, m.getName());
         values.put(Meeting.MeetingEntry.COLUMN_DATE, m.getDate());
         values.put(Meeting.MeetingEntry.COLUMN_HOST_ID, m.getHostId());
-        values.put(Meeting.MeetingEntry.COLUMN_PARTICIPANTS,  "participants");
+        values.put(Meeting.MeetingEntry.COLUMN_PARTICIPANTS, m.getParticipants());
         values.put(Meeting.MeetingEntry.COLUMN_CHAT_ID,  m.getChatId());
         // Inserting Row
         long id = database.insert(Meeting.MeetingEntry.TABLE_NAME, null, values);
@@ -59,14 +59,16 @@ public class MeetingsDataSource {
     }
 
     public void updateDatabase(Meeting m){
-        ContentValues values = new ContentValues();
+       /* ContentValues values = new ContentValues();
         values.put(Meeting.MeetingEntry.COLUMN_NAME, m.getName());
         values.put(Meeting.MeetingEntry.COLUMN_HOST_ID, m.getHostId());
         values.put(Meeting.MeetingEntry.COLUMN_DATE, m.getDate());
         values.put(Meeting.MeetingEntry.COLUMN_PARTICIPANTS,  m.getParticipants());
         values.put(Meeting.MeetingEntry.COLUMN_CHAT_ID,  m.getChatId());
         // updating row
-        database.update(Meeting.MeetingEntry.TABLE_NAME,values,Meeting.MeetingEntry.COLUMN_ID + "= ?", new String[] {String.valueOf(m.getId())});
+        database.update(Meeting.MeetingEntry.TABLE_NAME,values,Meeting.MeetingEntry.COLUMN_ID + "= ?", new String[] {m.getId()});
+        */
+        addMeeting(m);
     }
 
     public List<Meeting> getPreviousMeetings(){
@@ -110,7 +112,7 @@ public class MeetingsDataSource {
                 if(m.getId().equals(id))
                     return m;
 
-            list = getScheduledMeetings();
+            list = getScheduledMeetings();//foi a joana
 
             for(Meeting m : list)
                 if(m.getId().equals(id))

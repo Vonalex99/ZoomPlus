@@ -15,7 +15,7 @@ public class Meeting {
         this.name = name;
         this.date = date;
         this.hostId = hostId;
-        participants = "";
+        participants = hostId;
         chatId = id;
     }
 
@@ -67,7 +67,10 @@ public class Meeting {
     }
 
     public void addParticipant(String participant){
-        participants = participants + ";" + participant;
+        if(participants == null  || participants.isEmpty())
+            participants = participant;
+        else
+            participants = participants + ";" + participant;
     }
 
     public String getChatId() {

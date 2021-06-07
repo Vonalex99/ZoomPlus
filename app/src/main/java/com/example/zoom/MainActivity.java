@@ -10,13 +10,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.zoom.ui.contacts.Contacts;
-import com.example.zoom.ui.contacts.ContactDataSource;
 import com.example.zoom.databinding.ActivityMain3Binding;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
 import com.example.zoom.ui.JoinMeeting.JoinMeetingDialog;
-import com.example.zoom.ui.listMeetingParticipants.ListParticipantsDialog;
+import com.example.zoom.ui.contacts.ContactDataSource;
+import com.example.zoom.ui.contacts.Contacts;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.sql.SQLException;
@@ -84,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
         meetingsDS.addMeeting(new Meeting("5", "New Meeting5", "Wed, 02/07/2021", "0"));
         meetingsDS.addMeeting(new Meeting("6", "New Meeting6", "Thu, 03/07/2021", "0"));
         meetingsDS.addMeeting(new Meeting("7", "New Meeting7", "Fri, 04/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("8", "New Meeting8", "Fri, 04/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("9", "New Meeting9", "Fri, 04/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("10", "New Meeting10", "Fri, 04/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("11", "New Meeting11", "Fri, 04/07/2021", "0"));
 
 
     }
