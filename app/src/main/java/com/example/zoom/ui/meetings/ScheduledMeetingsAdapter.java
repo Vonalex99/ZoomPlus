@@ -6,15 +6,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zoom.R;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
+import com.example.zoom.ui.schedule.ScheduleFragment;
 
 import java.util.List;
 
@@ -60,7 +64,6 @@ public class ScheduledMeetingsAdapter extends RecyclerView.Adapter<ScheduledMeet
         viewHolder.meetingId.setText(meeting.getId());
         viewHolder.meetingDate.setText(meeting.getDate());
 
-
     }
 
     @Override
@@ -72,12 +75,16 @@ public class ScheduledMeetingsAdapter extends RecyclerView.Adapter<ScheduledMeet
         private TextView meetingName;
         private TextView meetingId;
         private TextView meetingDate;
+        private Button participantsButton;
 
         public ViewHolder(View view) {
             super(view);
             meetingName = (TextView)view.findViewById(R.id.scheduled_meeting_name);
             meetingId = (TextView)view.findViewById(R.id.scheduled_meeting_id);
             meetingDate = (TextView)view.findViewById(R.id.scheduled_meeting_date);
+
         }
     }
+
+
 }

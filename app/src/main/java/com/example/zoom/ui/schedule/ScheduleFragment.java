@@ -9,10 +9,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.zoom.R;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
+import com.example.zoom.ui.home.HomeFragment;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class ScheduleFragment extends Fragment {
@@ -20,38 +31,88 @@ public class ScheduleFragment extends Fragment {
     private static int id = 10;
 
     private View mView;
+
+    private EditText nameEdit,dateEdit,fromEdit,toEdit;
     private Button saveBtn;
-    private EditText name,date,from,to;
+
+    private String name, date, from, to;
+
     private MeetingsDataSource ds;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         ds = new MeetingsDataSource(getContext());
         ds.open();
 
+
+        nameEdit = (EditText) mView.findViewById(R.id.input_name);
+        dateEdit = (EditText) mView.findViewById(R.id.input_date);
+        fromEdit = (EditText) mView.findViewById(R.id.input_start_time);
+        toEdit = (EditText) mView.findViewById(R.id.input_end_time);
+
         saveBtn = (Button) mView.findViewById(R.id.saveBtn);
-        name = (EditText) mView.findViewById(R.id.input_name);
-        date = (EditText) mView.findViewById(R.id.input_date);
-        from = (EditText) mView.findViewById(R.id.input_start_time);
-        to = (EditText) mView.findViewById(R.id.input_end_time);
-
-
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ds.addMeeting(new Meeting(((id++) + ""), name.getText().toString(), date.getText().toString(), "0"));
-                Toast.makeText(getContext(), "Meeting Scheduled", Toast.LENGTH_LONG).show();
+                boolean statusOK = processData();
+                if (statusOK) {
+                    ds.addMeeting(new Meeting(((id++) + ""), name, date, "0"));
+                    jumpFragment(container);
+                    Toast.makeText(getContext(), "Meeting Scheduled", Toast.LENGTH_LONG).show();
+                }
             } });
 
 
         return mView;
         }
+
+    private boolean processData() {
+        boolean statusOK = false;
+        name = nameEdit.getText().toString();
+        date = dateEdit.getText().toString();
+        from = dateEdit.getText().toString();
+        to = dateEdit.getText().toString();
+
+        LocalDate today = LocalDate.now();
+        LocalDate meetingDate = convertDate(date);
+        Boolean pastDate = today.isAfter(meetingDate);
+
+        if(name.isEmpty())
+           Toast.makeText(getContext(), "Please insert valid meeting name", Toast.LENGTH_SHORT).show();
+        else if(date.isEmpty() || pastDate)
+            Toast.makeText(getContext(), "Please insert valid meeting date", Toast.LENGTH_SHORT).show();
+        else if(from.isEmpty())
+            Toast.makeText(getContext(), "Please insert valid meeting start time", Toast.LENGTH_SHORT).show();
+        else if(to.isEmpty())
+            Toast.makeText(getContext(), "Please insert valid meeting end time", Toast.LENGTH_SHORT).show();
+        else
+            statusOK = true;
+
+
+        DayOfWeek dayOfWeek = meetingDate.getDayOfWeek();
+        String weekDay = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+
+        date = weekDay + ", " + date;
+        return statusOK;
+    }
+
+    private LocalDate convertDate(String dateString){
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(dateString, formatter);
+    }
+
+    private void jumpFragment(ViewGroup container) {
+        HomeFragment fragment = new HomeFragment();
+
+        FragmentManager manager= getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.replace(container.getId(), fragment, fragment.toString());
+        fragmentTransaction.addToBackStack(fragment.toString());
+        fragmentTransaction.commit();
+    }
 
 }
 

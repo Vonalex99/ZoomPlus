@@ -51,8 +51,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ScheduleFragment fragment = new ScheduleFragment();
-
-                FragmentManager manager= getActivity().getSupportFragmentManager();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = manager.beginTransaction();
                 fragmentTransaction.replace(container.getId(), fragment, fragment.toString());
                 fragmentTransaction.addToBackStack(fragment.toString());
