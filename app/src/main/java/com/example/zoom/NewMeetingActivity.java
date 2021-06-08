@@ -1,6 +1,7 @@
 package com.example.zoom;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -52,6 +54,17 @@ public class NewMeetingActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_new_meeting);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
+                startActivity(intent);
+            }
+
+        }, 5000L);
 
     }
 
