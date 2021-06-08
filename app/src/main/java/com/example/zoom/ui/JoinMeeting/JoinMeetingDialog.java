@@ -63,7 +63,7 @@ public class JoinMeetingDialog extends DialogFragment {
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
-                        messageDataSource.updateMessagesMeeting(id , meetingId);
+                        messageDataSource.updateMessagesMeeting(id , String.valueOf(new_id));
                         Intent intent = new Intent(getContext(), NewMeetingActivity.class);
                         intent.putExtra("MEETING_ID", String.valueOf(new_id));
                         startActivity(intent);

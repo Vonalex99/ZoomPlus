@@ -58,7 +58,8 @@ public class ChatDialog extends DialogFragment {
             throwables.printStackTrace();
         }
 
-         String orig  = "JOANa"; String meetingId = "JOANa";
+         String orig  = "JOANa";
+           // String meetingId = "JOANa";
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override

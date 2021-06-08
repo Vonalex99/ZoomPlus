@@ -49,24 +49,26 @@ public class NewMeetingActivity extends AppCompatActivity {
             meetingsDataSource.open();
             long i = meetingsDataSource.addMeeting(new Meeting("0", "New Meeting", "Fri, 15/06/2021", "0"));
             id = String.valueOf(i);
+
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
+                    intent.putExtra("ID", id);
+                   // id = "12";
+                    startActivity(intent);
+                }
+
+            }, 5000L);
         }
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_new_meeting);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        Handler mHandler = new Handler();
-        mHandler.postDelayed(new Runnable() {
 
-            @Override
-            public void run() {
-                Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
-                intent.putExtra("ID", id);
-                id = "12";
-                startActivity(intent);
-            }
-
-        }, 5000L);
 
     }
 
