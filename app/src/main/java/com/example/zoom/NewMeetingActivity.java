@@ -61,6 +61,8 @@ public class NewMeetingActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
+                intent.putExtra("ID", id);
+                id = "12";
                 startActivity(intent);
             }
 

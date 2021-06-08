@@ -12,11 +12,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.zoom.db.Meeting;
+import com.example.zoom.db.MeetingsDataSource;
+import com.example.zoom.ui.contacts.ContactDataSource;
+import com.example.zoom.ui.contacts.Contacts;
+
+import java.sql.SQLException;
+
 public class AskPermissionActivity extends Activity {
 
-    Button acceptButton;
-    Button rejectButton;
-    TextView textBox;
+    private Button acceptButton;
+    private Button rejectButton;
+    private TextView textBox;
+    private MeetingsDataSource meetingsDataSource;
+    private ContactDataSource contactsDS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +37,30 @@ public class AskPermissionActivity extends Activity {
         textBox = (TextView) findViewById(R.id.textBox);
         textBox.setGravity(Gravity.CENTER_HORIZONTAL);
 
-        textBox.append("Participant requesting entry!");
+        //setup db access
+        meetingsDataSource = new MeetingsDataSource(getApplicationContext());
+        contactsDS = new ContactDataSource(getApplicationContext());
+        meetingsDataSource.open();
+        try {
+            contactsDS.open();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        Meeting meeting = meetingsDataSource.getMeetingbyId(getIntent().getStringExtra("ID"));
+
+        //Add dummy contact to the database
+        Contacts contact = new Contacts("user6@gmail.com", "user6");
+        contactsDS.addContact(contact);
+
+
+        textBox.append("user6 requesting entry!");
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                meeting.addParticipant("5");
+                meetingsDataSource.updateDatabase(meeting);
                 finish();
             }
         });
