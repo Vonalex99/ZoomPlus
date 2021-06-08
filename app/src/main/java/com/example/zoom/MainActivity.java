@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void newMeetingClick(View view) {
         Intent intent = new Intent(this, NewMeetingActivity.class);
+        intent.putExtra("MEETING_ID", "-1");
         startActivity(intent);
     }
 

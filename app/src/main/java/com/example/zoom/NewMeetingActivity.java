@@ -44,7 +44,7 @@ public class NewMeetingActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         id = getIntent().getStringExtra("MEETING_ID");
-        if(id == null) {
+        if(id.equals("-1")) {
             meetingsDataSource = new MeetingsDataSource(this);
             meetingsDataSource.open();
             long i = meetingsDataSource.addMeeting(new Meeting("0", "New Meeting", "Fri, 15/06/2021", "0"));

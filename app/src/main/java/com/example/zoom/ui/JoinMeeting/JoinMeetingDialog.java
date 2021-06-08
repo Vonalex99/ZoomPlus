@@ -53,9 +53,9 @@ public class JoinMeetingDialog extends DialogFragment {
                     Meeting meeting = meetingsDataSource.getMeetingbyId(id);
                     if(meeting != null) {
                         meeting.addParticipant("0");
-                        meetingsDataSource.updateDatabase(meeting);
+                        long new_id = meetingsDataSource.updateDatabase(meeting);
                         Intent intent = new Intent(getContext(), NewMeetingActivity.class);
-                        intent.putExtra("MEETING_ID", id);
+                        intent.putExtra("MEETING_ID", String.valueOf(new_id));
                         startActivity(intent);
                     } else{
                         Toast.makeText(getContext(), "Invalid Meeting", Toast.LENGTH_SHORT).show();

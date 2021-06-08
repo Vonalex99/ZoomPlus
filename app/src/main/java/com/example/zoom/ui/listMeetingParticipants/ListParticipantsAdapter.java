@@ -60,7 +60,7 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
         String participants = meeting.getParticipants();
 
         List<Integer> ids = new ArrayList<>();
-        ids.add(Integer.parseInt(meeting.getHostId()));
+   //     ids.add(Integer.parseInt(meeting.getHostId()));
 
         if(participants != null){
             String[] p = participants.split(";");
@@ -77,7 +77,7 @@ public class ListParticipantsAdapter extends RecyclerView.Adapter<ListParticipan
         Contacts contact = participantsList.get(position);
         String name = contact.getName();
 
-        if(position == 0)
+        if(meeting.getHostId().equals(String.valueOf(contact.getId())))
             name = contact.getName() + " (Host)";
 
         holder.contactName.setText(name);
