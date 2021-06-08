@@ -25,7 +25,7 @@ public class ChatDialog extends DialogFragment {
     private ChatDialogAdapter chatDialogAdapter;
     private MeetingsDataSource meetingsDataSource;
     private String meetingId;
-    private MessageDataSource ds;
+    private MessageDataSource messageDataSource;
 
     private static int id = 7;
 
@@ -47,10 +47,13 @@ public class ChatDialog extends DialogFragment {
         meetingsDataSource = new MeetingsDataSource(getContext());
         meetingsDataSource.open();
 
+        messageDataSource = new MessageDataSource(getContext());
+
+
         Button send = (Button) mView.findViewById(R.id.sendBtn);
 
         try {
-            ds.open();
+            messageDataSource.open();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -62,7 +65,7 @@ public class ChatDialog extends DialogFragment {
             public void onClick(View v) {
                 String content  = ((EditText)v.findViewById(R.id.message)).getText().toString();
                 Message m = new Message((id++) + "", orig, "all", meetingId, content, false, null);
-                ds.addMessage(m);
+                messageDataSource.addMessage(m);
                 updateView();
             } });
 
@@ -76,13 +79,20 @@ public class ChatDialog extends DialogFragment {
         super.onResume();
     }
 
-    private void updateView() {
+    public ChatDialog(String id){
+        meetingId = id;
+    }
 
+    private void updateView()  {
 
-        /*chatDialogAdapter = new ChatDialogAdapter(getContext());
+        try {
+            chatDialogAdapter = new ChatDialogAdapter(getContext(), meetingId);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         chatDialogAdapter.setHasStableIds(true);
         recyclerView.setAdapter(chatDialogAdapter);
-        chatDialogAdapter.notifyDataSetChanged();*/
+        chatDialogAdapter.notifyDataSetChanged();
     }
 
 }

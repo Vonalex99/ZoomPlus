@@ -80,6 +80,17 @@ public class MessageDataSource {
         return messagesList;
     }
 
+    public void updateMessagesMeeting(String oldId, String newId){
+        List<Message> messages = getMessages();
+        for(Message m: messages){
+            if(m.getMeetingId().equals(oldId)) {
+                m.setMeetingId(newId);
+                addMessage(m);
+            }
+        }
+
+    }
+
     private Message cursorToMessage(Cursor cursor) {
         Message contact = new Message(null, null,null,null,null,false,null);
         contact.setId(cursor.getString(cursor
@@ -98,7 +109,6 @@ public class MessageDataSource {
                 .getColumnIndexOrThrow(Message.MessageEntry.COLUMN_IMAGE)));
 
         return contact;
-
     }
 
     public void fix() {

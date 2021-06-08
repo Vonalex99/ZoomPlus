@@ -18,6 +18,9 @@ import com.example.zoom.NewMeetingActivity;
 import com.example.zoom.R;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
+import com.example.zoom.db.MessageDataSource;
+
+import java.sql.SQLException;
 
 public class JoinMeetingDialog extends DialogFragment {
 
@@ -54,6 +57,13 @@ public class JoinMeetingDialog extends DialogFragment {
                     if(meeting != null) {
                         meeting.addParticipant("0");
                         long new_id = meetingsDataSource.updateDatabase(meeting);
+                        MessageDataSource messageDataSource = new MessageDataSource(getContext());
+                        try {
+                            messageDataSource.open();
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        messageDataSource.updateMessagesMeeting(id , meetingId);
                         Intent intent = new Intent(getContext(), NewMeetingActivity.class);
                         intent.putExtra("MEETING_ID", String.valueOf(new_id));
                         startActivity(intent);
@@ -70,6 +80,7 @@ public class JoinMeetingDialog extends DialogFragment {
       //  updateView();
         return mView;
     }
+
 
     @Override
     public void onResume() {

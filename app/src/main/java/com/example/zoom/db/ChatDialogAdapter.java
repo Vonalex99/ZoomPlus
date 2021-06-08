@@ -28,6 +28,7 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
     private Context mContext;
     private List<Message> messages;
     private MessageDataSource messageDataSource;
+    private String meetingId;
 
     public ChatDialogAdapter(Context context,String meetingId) throws SQLException {
         mContext = context;
@@ -35,6 +36,7 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
         messageDataSource = new MessageDataSource(mContext);
         messageDataSource.open();
         messages = messageDataSource.getMessagesById(meetingId);
+        this.meetingId = meetingId;
 
     }
 
@@ -53,8 +55,10 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
 
         if(!message.isHasImage())
             holder.imageChat.setVisibility(View.GONE);
-        else
+        else {
             holder.imageChat.setVisibility(View.VISIBLE);
+           // holder.imageChat.setImageBitmap(); //ver isto depois
+        }
 
         holder.originTextView.setText(message.getOrig());
         holder.msgText.setText(message.getContent());

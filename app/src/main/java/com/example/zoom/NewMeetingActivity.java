@@ -93,7 +93,7 @@ public class NewMeetingActivity extends AppCompatActivity {
     }
 
     public void chat(View view){
-        ChatDialog chatDialog = new ChatDialog();
+        ChatDialog chatDialog = new ChatDialog(id);
         chatDialog.show(getSupportFragmentManager(), "ChatDialog");
 
     }
