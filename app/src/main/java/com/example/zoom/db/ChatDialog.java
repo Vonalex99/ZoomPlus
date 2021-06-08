@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,6 @@ public class ChatDialog extends DialogFragment {
         return mView;
     }
 
-
     @Override
     public void onResume() {
         updateView();
@@ -57,4 +57,5 @@ public class ChatDialog extends DialogFragment {
         recyclerView.setAdapter(chatDialogAdapter);
         chatDialogAdapter.notifyDataSetChanged();*/
     }
+
 }

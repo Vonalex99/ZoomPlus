@@ -80,7 +80,7 @@ public class PreviousMeetingsFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void updateView() {
-        adapter = new PreviousMeetingsAdapter(getContext());
+        adapter = new PreviousMeetingsAdapter(getContext(), getParentFragment());
         adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

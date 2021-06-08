@@ -42,9 +42,10 @@ public class MessageDataSource {
         }
     }
 
-    public void addContact(Message c){
+    public void addMessage(Message c){
         ContentValues values = new ContentValues();
         values.put(Message.MessageEntry.COLUMN_ID,c.getId());
+        values.put(Message.MessageEntry.COLUMN_MEETINGID,c.getId());
         values.put(Message.MessageEntry.COLUMN_ORIGIN,c.getOrig());
         values.put(Message.MessageEntry.COLUMN_DEST,c.getDest());
         values.put(Message.MessageEntry.COLUMN_CONTENT,c.getContent());
@@ -55,26 +56,32 @@ public class MessageDataSource {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Message> getContacts() {
-        List<Message> contactsList = new ArrayList<>();
+    public List<Message> getMessages() {
+        List<Message> messagesList = new ArrayList<>();
 
         try {
             Cursor cursor = database.query(Message.MessageEntry.TABLE_NAME, null, null, null, null, null, null);
 
             for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                contactsList.add(cursorToContact(cursor));
+                messagesList.add(cursorToMessage(cursor));
             }
         } catch (Exception e) {
             // Log.e(RecipeDataSource.class.getSimpleName(), e.getMessage());
         }
 
-        return contactsList;
+        return messagesList;
     }
 
+    public List<Message> getMessagesById(String id){
+        List<Message> m = getMessages();
+        List<Message> messagesList = new ArrayList<>();
+        for (Message msg : m)
+            if(msg.getMeetingId().equals(id))
+                messagesList.add(msg);
+        return messagesList;
+    }
 
-
-
-    private Message cursorToContact(Cursor cursor) {
+    private Message cursorToMessage(Cursor cursor) {
         Message contact = new Message(null, null,null,null,null,false,null);
         contact.setId(cursor.getString(cursor
                 .getColumnIndexOrThrow(Message.MessageEntry.COLUMN_ID)));

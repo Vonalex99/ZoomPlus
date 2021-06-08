@@ -63,7 +63,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton9"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:onClick="chat"/>
 
     <Button
         android:id="@+id/button"

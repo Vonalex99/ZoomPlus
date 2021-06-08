@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.example.zoom.db.ChatDialog;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
 import com.example.zoom.ui.listMeetingParticipants.ListParticipantsDialog;
@@ -76,8 +77,14 @@ public class NewMeetingActivity extends AppCompatActivity {
         ListParticipantsDialog listParticipantsDialog = new ListParticipantsDialog(id);
         listParticipantsDialog.show(getSupportFragmentManager(), "ListParticipantsDialog");
 
+    }
+
+    public void chat(View view){
+        ChatDialog chatDialog = new ChatDialog();
+        chatDialog.show(getSupportFragmentManager(), "ChatDialog");
 
     }
+
     public void stopCamera(View view) {
         ImageButton btn = (ImageButton)findViewById(R.id.imageButton6);
         if(!cameraOff){

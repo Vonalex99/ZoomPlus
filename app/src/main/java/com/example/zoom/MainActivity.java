@@ -13,6 +13,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.zoom.databinding.ActivityMain3Binding;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
+import com.example.zoom.db.Message;
+import com.example.zoom.db.MessageDataSource;
 import com.example.zoom.ui.JoinMeeting.JoinMeetingDialog;
 import com.example.zoom.ui.contacts.ContactDataSource;
 import com.example.zoom.ui.contacts.Contacts;
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         meetingsDS.addMeeting(new Meeting("7", "New Meeting7", "Fri, 04/07/2021", "0"));
         meetingsDS.addMeeting(new Meeting("8", "New Meeting8", "Fri, 04/07/2021", "0"));
         meetingsDS.addMeeting(new Meeting("9", "New Meeting9", "Fri, 04/07/2021", "0"));
+
 
     }
 }
