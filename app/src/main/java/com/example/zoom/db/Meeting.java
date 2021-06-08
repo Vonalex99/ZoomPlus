@@ -77,6 +77,10 @@ public class Meeting {
         return chatId;
     }
 
+    public void setChatId(String chatId) {
+        this.chatId = chatId;
+    }
+
     public String getHostId() {
         return hostId;
     }
@@ -84,7 +88,6 @@ public class Meeting {
     public String setHostId(String hostId) {
         return this.hostId = hostId;
     }
-
 
     public String getDate() {
         return date;

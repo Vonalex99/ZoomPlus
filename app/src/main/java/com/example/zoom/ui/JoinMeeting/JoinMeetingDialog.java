@@ -52,9 +52,9 @@ public class JoinMeetingDialog extends DialogFragment {
                 if(!id.isEmpty()) {
                     Meeting meeting = meetingsDataSource.getMeetingbyId(id);
                     meeting.addParticipant("0");
-                    meetingsDataSource.updateDatabase(meeting);
+                    long new_id = meetingsDataSource.updateDatabase(meeting);
                     Intent intent = new Intent(getContext(), NewMeetingActivity.class);
-                    intent.putExtra("MEETING_ID", id);
+                    intent.putExtra("MEETING_ID", new_id);
                     startActivity(intent);
                 }
                 else
