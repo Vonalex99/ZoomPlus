@@ -57,11 +57,23 @@ public class NewMeetingActivity extends AppCompatActivity {
                 public void run() {
                     Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
                     intent.putExtra("ID", id);
-                   // id = "12";
+                    intent.putExtra("User", "user6");
+                    id = "12";
                     startActivity(intent);
                 }
 
             }, 5000L);
+            mHandler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
+                    intent.putExtra("ID", id);
+                    intent.putExtra("User", "user7");
+                    startActivity(intent);
+                }
+
+            }, 13000L);
         }
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_new_meeting);
