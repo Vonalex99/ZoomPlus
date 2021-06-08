@@ -18,6 +18,9 @@ import com.example.zoom.NewMeetingActivity;
 import com.example.zoom.R;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
+import com.example.zoom.db.MessageDataSource;
+
+import java.sql.SQLException;
 
 public class JoinMeetingDialog extends DialogFragment {
 
@@ -51,11 +54,22 @@ public class JoinMeetingDialog extends DialogFragment {
                 String id = idEditText.getText().toString();
                 if(!id.isEmpty()) {
                     Meeting meeting = meetingsDataSource.getMeetingbyId(id);
-                    meeting.addParticipant("0");
-                    long new_id = meetingsDataSource.updateDatabase(meeting);
-                    Intent intent = new Intent(getContext(), NewMeetingActivity.class);
-                    intent.putExtra("MEETING_ID", new_id);
-                    startActivity(intent);
+                    if(meeting != null) {
+                        meeting.addParticipant("0");
+                        long new_id = meetingsDataSource.updateDatabase(meeting);
+                        MessageDataSource messageDataSource = new MessageDataSource(getContext());
+                        try {
+                            messageDataSource.open();
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        messageDataSource.updateMessagesMeeting(id , String.valueOf(new_id));
+                        Intent intent = new Intent(getContext(), NewMeetingActivity.class);
+                        intent.putExtra("MEETING_ID", String.valueOf(new_id));
+                        startActivity(intent);
+                    } else{
+                        Toast.makeText(getContext(), "Invalid Meeting", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else
                     Toast.makeText(getContext(), "Insert Meeting ID", Toast.LENGTH_SHORT).show();
@@ -66,6 +80,7 @@ public class JoinMeetingDialog extends DialogFragment {
       //  updateView();
         return mView;
     }
+
 
     @Override
     public void onResume() {

@@ -11,4 +11,8 @@
         <item name="android:fontFamily">@font/ubutu_regular</item-->
     </style>
 
+    <style name="AppTheme.Pop">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
 </resources>

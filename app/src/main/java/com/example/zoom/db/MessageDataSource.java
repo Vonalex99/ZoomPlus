@@ -42,9 +42,9 @@ public class MessageDataSource {
     public void addMessage(Message c){
         ContentValues values = new ContentValues();
         values.put(Message.MessageEntry.COLUMN_ID,c.getId());
-        values.put(Message.MessageEntry.COLUMN_MEETINGID,c.getId());
-        values.put(Message.MessageEntry.COLUMN_ORIGIN,c.getOrig());
         values.put(Message.MessageEntry.COLUMN_MEETINGID,c.getMeetingId());
+        values.put(Message.MessageEntry.COLUMN_ORIGIN,c.getOrig());
+        values.put(Message.MessageEntry.COLUMN_HAS_IAMGE,c.isHasImage());
         values.put(Message.MessageEntry.COLUMN_DEST,c.getDest());
         values.put(Message.MessageEntry.COLUMN_CONTENT,c.getContent());
         int bool = c.isHasImage() ? 1:0;
@@ -80,6 +80,30 @@ public class MessageDataSource {
         return messagesList;
     }
 
+    public long updateDatabase(Message m){
+       ContentValues values = new ContentValues();
+       values.put(Message.MessageEntry.COLUMN_CONTENT, m.getContent());
+       values.put(Message.MessageEntry.COLUMN_DEST, m.getDest());
+       values.put(Message.MessageEntry.COLUMN_HAS_IAMGE, m.isHasImage());
+       values.put(Message.MessageEntry.COLUMN_IMAGE,  m.getImage());
+       values.put(Message.MessageEntry.COLUMN_ORIGIN,  m.getOrig());
+       values.put(Message.MessageEntry.COLUMN_MEETINGID,  m.getMeetingId());
+       // updating row
+       return database.update(Message.MessageEntry.TABLE_NAME,values,Message.MessageEntry.COLUMN_ID + "= ?", new String[] {m.getId()});
+
+       // return addMeeting(m);
+    }
+    public void updateMessagesMeeting(String oldId, String newId){
+        List<Message> messages = getMessages();
+        for(Message m: messages){
+            if(m.getMeetingId().equals(oldId)) {
+                m.setMeetingId(newId);
+                updateDatabase(m);
+            }
+        }
+
+    }
+
     private Message cursorToMessage(Cursor cursor) {
         Message contact = new Message(null, null,null,null,null,false,null);
         contact.setId(cursor.getString(cursor
@@ -98,7 +122,6 @@ public class MessageDataSource {
                 .getColumnIndexOrThrow(Message.MessageEntry.COLUMN_IMAGE)));
 
         return contact;
-
     }
 
     public void fix() {

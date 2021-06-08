@@ -2,6 +2,7 @@ package com.example.zoom;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Base64;
 import android.view.View;
 
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-
         try {
             setUpDummyDatabase();
         } catch (SQLException throwables) {
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void newMeetingClick(View view) {
         Intent intent = new Intent(this, NewMeetingActivity.class);
+        intent.putExtra("MEETING_ID", "-1");
         startActivity(intent);
     }
 

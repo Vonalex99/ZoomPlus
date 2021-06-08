@@ -1,6 +1,7 @@
 package com.example.zoom;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -42,16 +44,31 @@ public class NewMeetingActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         id = getIntent().getStringExtra("MEETING_ID");
-        if(id == null) {
+        if(id.equals("-1")) {
             meetingsDataSource = new MeetingsDataSource(this);
             meetingsDataSource.open();
             long i = meetingsDataSource.addMeeting(new Meeting("0", "New Meeting", "Fri, 15/06/2021", "0"));
             id = String.valueOf(i);
+
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
+                    intent.putExtra("ID", id);
+                   // id = "12";
+                    startActivity(intent);
+                }
+
+            }, 5000L);
         }
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_new_meeting);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+
 
     }
 
@@ -80,7 +97,7 @@ public class NewMeetingActivity extends AppCompatActivity {
     }
 
     public void chat(View view){
-        ChatDialog chatDialog = new ChatDialog();
+        ChatDialog chatDialog = new ChatDialog(id);
         chatDialog.show(getSupportFragmentManager(), "ChatDialog");
 
     }
@@ -99,5 +116,4 @@ public class NewMeetingActivity extends AppCompatActivity {
     public void exitMeeting(View view) {
         finish();
     }
-
 }
