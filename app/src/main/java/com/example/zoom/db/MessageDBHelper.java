@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.zoom.ui.contacts.Contacts;
-
 public class MessageDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME= "ZoomDatabase.db";
@@ -16,16 +14,16 @@ public class MessageDBHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + Message.MessageEntry.TABLE_NAME + " (" +
                     Message.MessageEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    Message.MessageEntry.COLUMN_ORIGIN + " VARCHAR2 ," +
-                    Message.MessageEntry.COLUMN_DEST + " VARCHAR2  ," +
-                    Message.MessageEntry.COLUMN_CONTENT + "VARCHAR2 ," +
-                    Message.MessageEntry.COLUMN_MEETINGID + "VARCHAR2,"+
-                    Message.MessageEntry.COLUMN_HAS_IAMGE + "BOOLEAN,"+
-                    Message.MessageEntry.COLUMN_IMAGE + "BLOB)";
+                    Message.MessageEntry.COLUMN_ORIGIN + " VARCHAR2," +
+                    Message.MessageEntry.COLUMN_DEST + " VARCHAR2," +
+                    Message.MessageEntry.COLUMN_CONTENT + " VARCHAR2," +
+                    Message.MessageEntry.COLUMN_MEETINGID + " VARCHAR2,"+
+                    Message.MessageEntry.COLUMN_HAS_IAMGE + " INTEGER,"+
+                    Message.MessageEntry.COLUMN_IMAGE + " BLOB)";
 
 
     private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + Contacts.ContactEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + Message.MessageEntry.TABLE_NAME;
 
 
     public MessageDBHelper(@Nullable Context context) {

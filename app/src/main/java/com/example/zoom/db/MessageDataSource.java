@@ -8,20 +8,17 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.zoom.ui.contacts.ContactDbHelper;
-import com.example.zoom.ui.contacts.Contacts;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessageDataSource {
 
-    private ContactDbHelper db;
+    private MessageDBHelper db;
     private SQLiteDatabase database;
 
     public MessageDataSource(Context context){
-        db = new ContactDbHelper(context);
+        db = new MessageDBHelper(context);
     }
 
     public SQLiteDatabase getDatabase(){
@@ -42,16 +39,18 @@ public class MessageDataSource {
         }
     }
 
-    public void addContact(Message c){
+    public void addMessage(Message c){
         ContentValues values = new ContentValues();
         values.put(Message.MessageEntry.COLUMN_ID,c.getId());
         values.put(Message.MessageEntry.COLUMN_ORIGIN,c.getOrig());
+        values.put(Message.MessageEntry.COLUMN_MEETINGID,c.getMeetingId());
         values.put(Message.MessageEntry.COLUMN_DEST,c.getDest());
         values.put(Message.MessageEntry.COLUMN_CONTENT,c.getContent());
-        values.put(Message.MessageEntry.COLUMN_HAS_IAMGE,c.isHasImage());
+        int bool = c.isHasImage() ? 1:0;
+        values.put(Message.MessageEntry.COLUMN_HAS_IAMGE,bool);
         values.put(Message.MessageEntry.COLUMN_IMAGE,c.getImage());
 
-        database.insert(Contacts.ContactEntry.TABLE_NAME,null, values);
+        database.insert(Message.MessageEntry.TABLE_NAME,null, values);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -87,7 +86,7 @@ public class MessageDataSource {
         contact.setContent(cursor.getString(cursor
                 .getColumnIndexOrThrow(Message.MessageEntry.COLUMN_CONTENT)));
         contact.setHasImage(cursor.getInt(cursor
-                .getColumnIndexOrThrow(Message.MessageEntry.COLUMN_HAS_IAMGE)) == 1); // se der shit é aqui
+                .getColumnIndexOrThrow(Message.MessageEntry.COLUMN_HAS_IAMGE)) == 1);
         contact.setImage(cursor.getBlob(cursor
                 .getColumnIndexOrThrow(Message.MessageEntry.COLUMN_IMAGE)));
 
