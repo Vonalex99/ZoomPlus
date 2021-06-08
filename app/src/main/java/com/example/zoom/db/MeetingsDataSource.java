@@ -58,7 +58,7 @@ public class MeetingsDataSource {
         database.delete(Meeting.MeetingEntry.TABLE_NAME, Meeting.MeetingEntry.COLUMN_ID + "= ?" , new String[] {String.valueOf(card.getId())});
     }
 
-    public void updateDatabase(Meeting m){
+    public long updateDatabase(Meeting m){
        /* ContentValues values = new ContentValues();
         values.put(Meeting.MeetingEntry.COLUMN_NAME, m.getName());
         values.put(Meeting.MeetingEntry.COLUMN_HOST_ID, m.getHostId());
@@ -68,7 +68,7 @@ public class MeetingsDataSource {
         // updating row
         database.update(Meeting.MeetingEntry.TABLE_NAME,values,Meeting.MeetingEntry.COLUMN_ID + "= ?", new String[] {m.getId()});
         */
-        addMeeting(m);
+        return addMeeting(m);
     }
 
     public List<Meeting> getPreviousMeetings(){
@@ -127,8 +127,8 @@ public class MeetingsDataSource {
         meeting.setName(cursor.getString(cursor.getColumnIndexOrThrow(Meeting.MeetingEntry.COLUMN_NAME)));
         meeting.setDate(cursor.getString(cursor.getColumnIndexOrThrow(Meeting.MeetingEntry.COLUMN_DATE)));
         meeting.setHostId(cursor.getString(cursor.getColumnIndex(Meeting.MeetingEntry.COLUMN_HOST_ID)));
-        meeting.setHostId(cursor.getString(cursor.getColumnIndex(Meeting.MeetingEntry.COLUMN_PARTICIPANTS)));
-        meeting.setHostId(cursor.getString(cursor.getColumnIndex(Meeting.MeetingEntry.COLUMN_CHAT_ID)));
+        meeting.setParticipants(cursor.getString(cursor.getColumnIndex(Meeting.MeetingEntry.COLUMN_PARTICIPANTS)));
+        meeting.setChatId(cursor.getString(cursor.getColumnIndex(Meeting.MeetingEntry.COLUMN_CHAT_ID)));
         return meeting;
 
     }

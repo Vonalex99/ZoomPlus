@@ -78,15 +78,15 @@ public class MainActivity extends AppCompatActivity {
         meetingsDS.fix();
         //past meetings
         meetingsDS.addMeeting(new Meeting("0", "New Meeting", "Tue, 01/06/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("1", "New Meeting1", "Wed, 02/06/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("2", "New Meeting2", "Thu, 03/06/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("3", "New Meeting3", "Fri, 04/06/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("1", "New Meeting1", "Wed, 02/06/2021", "1"));
+        meetingsDS.addMeeting(new Meeting("2", "New Meeting2", "Thu, 03/06/2021", "1"));
+        meetingsDS.addMeeting(new Meeting("3", "New Meeting3", "Fri, 04/06/2021", "2"));
         //future meetings
-        meetingsDS.addMeeting(new Meeting("4", "New Meeting4", "Tue, 01/07/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("5", "New Meeting5", "Wed, 02/07/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("6", "New Meeting6", "Thu, 03/07/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("7", "New Meeting7", "Fri, 04/07/2021", "0"));
-        meetingsDS.addMeeting(new Meeting("8", "New Meeting8", "Fri, 04/07/2021", "0"));
+        meetingsDS.addMeeting(new Meeting("4", "New Meeting4", "Tue, 01/07/2021", "2"));
+        meetingsDS.addMeeting(new Meeting("5", "New Meeting5", "Wed, 02/07/2021", "3"));
+        meetingsDS.addMeeting(new Meeting("6", "New Meeting6", "Thu, 03/07/2021", "3"));
+        meetingsDS.addMeeting(new Meeting("7", "New Meeting7", "Fri, 04/07/2021", "4"));
+        meetingsDS.addMeeting(new Meeting("8", "New Meeting8", "Fri, 04/07/2021", "5"));
         meetingsDS.addMeeting(new Meeting("9", "New Meeting9", "Fri, 04/07/2021", "0"));
 
         MessageDataSource messageDS = new MessageDataSource(this);

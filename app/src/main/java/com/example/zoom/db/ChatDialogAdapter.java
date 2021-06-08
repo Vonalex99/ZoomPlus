@@ -46,6 +46,7 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
         return new ChatDialogAdapter.ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message message = messages.get(position);
@@ -58,13 +59,13 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
         holder.originTextView.setText(message.getOrig());
         holder.msgText.setText(message.getContent());
 
-
     }
 
     @Override
     public int getItemCount() {
         return messages.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageChat;
@@ -79,5 +80,11 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
 
         }
     }
+
+
+
+
+
+
 
 }
