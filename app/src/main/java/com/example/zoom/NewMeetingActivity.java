@@ -112,5 +112,4 @@ public class NewMeetingActivity extends AppCompatActivity {
     public void exitMeeting(View view) {
         finish();
     }
-
 }
