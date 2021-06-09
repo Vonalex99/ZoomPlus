@@ -58,7 +58,7 @@ public class NewMeetingActivity extends AppCompatActivity {
                     Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
                     intent.putExtra("ID", id);
                     intent.putExtra("User", "user6");
-                    //id = "12";
+                    id = "12";
                     startActivity(intent);
                 }
 
