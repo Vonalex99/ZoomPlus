@@ -1,6 +1,5 @@
 package com.example.zoom.ui.listMeetingParticipants;
 
-import android.app.FragmentManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

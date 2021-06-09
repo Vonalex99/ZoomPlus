@@ -37,6 +37,7 @@ public class PreviousMeetingsParticipantsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         updateView(id);
 
+
         return mView;
 
     }

@@ -44,9 +44,9 @@ public class NewMeetingActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         id = getIntent().getStringExtra("MEETING_ID");
+        meetingsDataSource = new MeetingsDataSource(this);
+        meetingsDataSource.open();
         if(id.equals("-1")) {
-            meetingsDataSource = new MeetingsDataSource(this);
-            meetingsDataSource.open();
             long i = meetingsDataSource.addMeeting(new Meeting("0", "New Meeting", "Fri, 15/06/2021", "0"));
             id = String.valueOf(i);
 
@@ -58,7 +58,7 @@ public class NewMeetingActivity extends AppCompatActivity {
                     Intent intent = new Intent(NewMeetingActivity.this, AskPermissionActivity.class);
                     intent.putExtra("ID", id);
                     intent.putExtra("User", "user6");
-                    id = "12";
+                    //id = "12";
                     startActivity(intent);
                 }
 
@@ -74,6 +74,13 @@ public class NewMeetingActivity extends AppCompatActivity {
                 }
 
             }, 13000L);
+        }
+        else if(id.equals("-2")){
+            Meeting m = new Meeting("0", "New Meeting", "Fri, 15/06/2021", "0");
+            String participant = id = getIntent().getStringExtra("PARTICIPATN_ID");
+            m.addParticipant(participant);
+            long i = meetingsDataSource.addMeeting(m);
+            id = String.valueOf(i);
         }
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_new_meeting);

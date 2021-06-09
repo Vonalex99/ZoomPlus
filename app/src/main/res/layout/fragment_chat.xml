@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +7,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_msg"
-        android:layout_width="411dp"
-        android:layout_height="581dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="412dp"
+        android:layout_height="546dp"
+        android:layout_marginBottom="184dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-2dp" />
 
     <EditText
         android:id="@+id/message"
@@ -22,10 +20,10 @@
         android:layout_height="63dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Message"
+        android:hint="Type Here"
         app:layout_constraintBottom_toTopOf="@+id/sendBtn"
-        tools:layout_editor_absoluteX="2dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="2dp" />
 
     <Button
         android:id="@+id/sendBtn"
@@ -42,8 +40,35 @@
         android:id="@+id/spinner"
         android:layout_width="142dp"
         android:layout_height="28dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/message"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="-2dp" />
+
+    <ImageButton
+        android:id="@+id/addBtn"
+        android:layout_width="54dp"
+        android:layout_height="42dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_msg"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:srcCompat="@drawable/clip" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="94dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toTopOf="@+id/message"
+        app:layout_constraintEnd_toStartOf="@+id/addBtn"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_msg"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

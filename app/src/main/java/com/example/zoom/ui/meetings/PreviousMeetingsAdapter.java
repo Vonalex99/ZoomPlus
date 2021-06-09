@@ -81,8 +81,15 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
             @Override
             public void onClick(View view) {
                 //fragmentJump(meeting);
-                Toast.makeText(mContext, "lololol1", Toast.LENGTH_LONG).show();
                 PreviousMeetingsParticipantsFragment fragment = new PreviousMeetingsParticipantsFragment();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                fragmentTransaction.replace(container.getId(), fragment, fragment.toString());
+                fragmentTransaction.addToBackStack(fragment.toString());
+                fragmentTransaction.commit();
+
+                Toast.makeText(mContext, "lololol1", Toast.LENGTH_LONG).show();
+              /*  PreviousMeetingsParticipantsFragment fragment = new PreviousMeetingsParticipantsFragment();
                 mBundle.putString("id", String.valueOf(meeting.getId()));
                 fragment.setArguments(mBundle);
 
@@ -90,7 +97,7 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
                 FragmentTransaction fragmentTransaction = manager.beginTransaction();
                 fragmentTransaction.replace(container.getId(), fragment, fragment.toString());
                 fragmentTransaction.addToBackStack(fragment.toString());
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
             }
         });
 

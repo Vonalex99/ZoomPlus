@@ -60,6 +60,7 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
             holder.imageChat.setVisibility(View.GONE);
         else {
             holder.imageChat.setVisibility(View.VISIBLE);
+            holder.imageChat.setImageBitmap(DbBitmapUtility.getImage(message.getImage()));
            // holder.imageChat.setImageBitmap(); //ver isto depois
         }
 

@@ -1,6 +1,7 @@
 package com.example.zoom.ui.contacts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zoom.NewMeetingActivity;
 import com.example.zoom.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -77,7 +79,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(mContext, NewMeetingActivity.class);
+                intent.putExtra("MEETING_ID", String.valueOf("-2"));
+                intent.putExtra("PARTICIPATN_ID", String.valueOf(String.valueOf(contact.getId())));
+                mContext.startActivity(intent);
 
             }
         
