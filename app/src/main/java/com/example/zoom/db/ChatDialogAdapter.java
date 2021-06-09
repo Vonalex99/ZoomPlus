@@ -61,7 +61,6 @@ public class ChatDialogAdapter extends RecyclerView.Adapter<ChatDialogAdapter.Vi
         else {
             holder.imageChat.setVisibility(View.VISIBLE);
             holder.imageChat.setImageBitmap(DbBitmapUtility.getImage(message.getImage()));
-           // holder.imageChat.setImageBitmap(); //ver isto depois
         }
 
         List<Integer> contacts = new ArrayList<>();

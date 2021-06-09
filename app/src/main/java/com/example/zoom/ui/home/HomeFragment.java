@@ -17,12 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
-
-import com.example.zoom.NewMeetingActivity;
-import com.example.zoom.R;
 import com.example.zoom.databinding.FragmentHomeBinding;
-import com.example.zoom.ui.meetings.ScheduledMeetingsFragment;
 import com.example.zoom.ui.schedule.ScheduleFragment;
 
 public class HomeFragment extends Fragment {

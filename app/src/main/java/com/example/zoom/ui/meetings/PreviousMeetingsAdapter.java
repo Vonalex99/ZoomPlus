@@ -19,24 +19,27 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zoom.MainActivity;
-import com.example.zoom.NewMeetingActivity;
-import com.example.zoom.db.ChatDialog;
 import com.example.zoom.db.Meeting;
 import com.example.zoom.db.MeetingsDataSource;
 import com.example.zoom.R;
-import com.example.zoom.ui.listMeetingParticipants.ListParticipantsDialog;
-import com.example.zoom.ui.schedule.ScheduleFragment;
+import com.example.zoom.db.Message;
+import com.example.zoom.db.MessageDataSource;
 
 import java.util.List;
 
 public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetingsAdapter.ViewHolder> {
     private List<Meeting> meetingList;
+
     private MeetingsDataSource meetingsDataSource;
+    private MessageDataSource messagesDataSource;
+
     private Bundle mBundle;
     private Context mContext;
     private Fragment mFragment;
     private ViewGroup container;
     private FragmentActivity activity;
+
+    private boolean hasMessages;
 
     public PreviousMeetingsAdapter(Context context, ViewGroup container, FragmentActivity activity) {
         mContext = context;
@@ -45,11 +48,13 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
         this.activity = activity;
 
         meetingsDataSource = new MeetingsDataSource(context);
+        messagesDataSource = new MessageDataSource(context);
+
         try {
             int userId = 0;
             meetingsDataSource.open();
+            messagesDataSource.open();
             this.meetingList = meetingsDataSource.getPreviousMeetings();
-            System.out.println("Meetings list size: " + meetingList.size());
         } catch (Exception e){
         } finally {
            meetingsDataSource.close();
@@ -80,24 +85,19 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
         viewHolder.participantsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //fragmentJump(meeting);
-                PreviousMeetingsParticipantsFragment fragment = new PreviousMeetingsParticipantsFragment();
-                FragmentManager manager = activity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                fragmentTransaction.replace(container.getId(), fragment, fragment.toString());
-                fragmentTransaction.addToBackStack(fragment.toString());
-                fragmentTransaction.commit();
 
-                Toast.makeText(mContext, "lololol1", Toast.LENGTH_LONG).show();
-              /*  PreviousMeetingsParticipantsFragment fragment = new PreviousMeetingsParticipantsFragment();
-                mBundle.putString("id", String.valueOf(meeting.getId()));
-                fragment.setArguments(mBundle);
+                listParticipants(meeting.getId());
+            }
+        });
 
-                FragmentManager manager = activity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                fragmentTransaction.replace(container.getId(), fragment, fragment.toString());
-                fragmentTransaction.addToBackStack(fragment.toString());
-                fragmentTransaction.commit();*/
+        viewHolder.chatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(hasMessages(meeting.getId()))
+                    getMessages(meeting.getId());
+                else
+                    Toast.makeText(mContext, "No exchanged messages", Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -106,6 +106,11 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
     @Override
     public int getItemCount() {
         return meetingList.size();
+    }
+
+    private boolean hasMessages(String meetingId) {
+        List<Message> messages = messagesDataSource.getMessagesById(meetingId);
+        return messages.size() > 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -126,20 +131,16 @@ public class PreviousMeetingsAdapter extends RecyclerView.Adapter<PreviousMeetin
         }
     }
 
-    private void fragmentJump(Meeting meeting) {
-        mFragment = new PreviousMeetingsParticipantsFragment();
-        mBundle.putString("id", String.valueOf(meeting.getId()));
-        mFragment.setArguments(mBundle);
-        switchContent(R.id.fragment_previous_meeting_participants, mFragment);
+
+    private void listParticipants(String id) {
+        MainActivity mainActivity = (MainActivity) mContext;
+        PreviousMeetingsParticipantsDialog participantsDialog = new PreviousMeetingsParticipantsDialog(id);
+        participantsDialog.show(mainActivity.getSupportFragmentManager(), "PreviousMeetingsParticipantsDialog");
     }
 
-    public void switchContent(int id, Fragment fragment) {
-        if (mContext == null)
-            return;
-        if (mContext instanceof MainActivity) {
-            MainActivity mainActivity = (MainActivity) mContext;
-            Fragment frag = fragment;
-            mainActivity.switchContent(id, frag);
-        }
+    private void getMessages(String id) {
+        MainActivity mainActivity = (MainActivity) mContext;
+        PreviousMeetingChatDialog chatDialog = new PreviousMeetingChatDialog(id);
+        chatDialog.show(mainActivity.getSupportFragmentManager(), "PreviousMeetingsParticipantsDialog");
     }
 }

@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,15 +55,14 @@ public class PreviousMeetingParticipantsAdapter extends RecyclerView.Adapter<Pre
     @Override
     public  ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).
-                inflate(R.layout.list_participants_row, parent, false);
+                inflate(R.layout.previous_meeting_participant_item, parent, false);
         return new PreviousMeetingParticipantsAdapter.ViewHolder(view);
     }
 
     private List<Integer> getParticipantsId(){
         String participants = meeting.getParticipants();
 
-        List<Integer> ids = new ArrayList<>();
-        ids.add(Integer.parseInt(meeting.getHostId()));
+          List<Integer> ids = new ArrayList<>();
 
         if(participants != null){
             String[] p = participants.split(";");
@@ -70,7 +70,6 @@ public class PreviousMeetingParticipantsAdapter extends RecyclerView.Adapter<Pre
             for(String part : p )
                 ids.add(Integer.parseInt(part));
         }
-
         return ids;
     }
 

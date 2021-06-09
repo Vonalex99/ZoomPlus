@@ -19,7 +19,9 @@ import com.example.zoom.ui.home.HomeFragment;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Date;
@@ -78,31 +80,41 @@ public class ScheduleFragment extends Fragment {
 
         LocalDate today = LocalDate.now();
         LocalDate meetingDate = convertDate(date);
-        Boolean pastDate = today.isAfter(meetingDate);
+
 
         if(name.isEmpty())
            Toast.makeText(getContext(), "Please insert valid meeting name", Toast.LENGTH_SHORT).show();
-        else if(date.isEmpty() || pastDate)
+        else if(date.isEmpty())
             Toast.makeText(getContext(), "Please insert valid meeting date", Toast.LENGTH_SHORT).show();
+        else if(meetingDate == null)
+            Toast.makeText(getContext(), "Please insert date in dd/MM/yyyy format", Toast.LENGTH_SHORT).show();
+        else if(today.isAfter(meetingDate))
+            Toast.makeText(getContext(), "Please insert future date", Toast.LENGTH_SHORT).show();
         else if(from.isEmpty())
             Toast.makeText(getContext(), "Please insert valid meeting start time", Toast.LENGTH_SHORT).show();
         else if(to.isEmpty())
             Toast.makeText(getContext(), "Please insert valid meeting end time", Toast.LENGTH_SHORT).show();
-        else
+        else {
             statusOK = true;
+            DayOfWeek dayOfWeek = meetingDate.getDayOfWeek();
+            String weekDay = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+            date = weekDay + ", " + date;
+        }
 
-
-        DayOfWeek dayOfWeek = meetingDate.getDayOfWeek();
-        String weekDay = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault());
-
-        date = weekDay + ", " + date;
         return statusOK;
     }
 
     private LocalDate convertDate(String dateString){
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return LocalDate.parse(dateString, formatter);
+        LocalDate ld = null;
+        try {
+            ld = LocalDate.parse(dateString, formatter);
+        }  catch (DateTimeParseException exp) {
+
+        }
+        return  ld;
     }
+
 
     private void jumpFragment(ViewGroup container) {
         HomeFragment fragment = new HomeFragment();
