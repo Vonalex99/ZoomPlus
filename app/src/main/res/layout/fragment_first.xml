@@ -12,59 +12,59 @@
         android:layout_height="55dp"
         android:adjustViewBounds="true"
         android:backgroundTint="@android:color/background_dark"
+        android:onClick="muteSound"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_action_mic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton6"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="muteSound"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton6"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:backgroundTint="@android:color/background_dark"
+        android:onClick="stopCamera"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_action_video"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton8"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
-        android:scaleType="fitCenter"
-        android:onClick="stopCamera"/>
+        app:layout_constraintStart_toEndOf="@+id/imageButton5" />
 
     <ImageButton
         android:id="@+id/imageButton8"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:backgroundTint="@android:color/background_dark"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_action_share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton9"
-        app:layout_constraintStart_toEndOf="@+id/imageButton6"
-        android:scaleType="fitCenter"/>
+        app:layout_constraintStart_toEndOf="@+id/imageButton6" />
 
     <ImageButton
         android:id="@+id/imageButton9"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:backgroundTint="@android:color/background_dark"
+        android:onClick="listParticipants"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_action_contacts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton10"
-        app:layout_constraintStart_toEndOf="@+id/imageButton8"
-        android:scaleType="fitCenter"
-        android:onClick="listParticipants"/>
+        app:layout_constraintStart_toEndOf="@+id/imageButton8" />
 
     <ImageButton
         android:id="@+id/imageButton10"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:backgroundTint="@android:color/background_dark"
+        android:onClick="chat"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_action_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton9"
-        android:scaleType="fitCenter"
-        android:onClick="chat"/>
+        app:layout_constraintStart_toEndOf="@+id/imageButton9" />
 
     <Button
         android:id="@+id/button"
@@ -72,10 +72,28 @@
         android:layout_height="40dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="@android:color/holo_red_dark"
+        android:onClick="exitMeeting"
         android:text="End"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="exitMeeting"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/google_contacts"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
