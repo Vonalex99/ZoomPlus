@@ -10,7 +10,7 @@
         android:id="@+id/recycler_msg"
         android:layout_width="411dp"
         android:layout_height="581dp"
-        app:layout_constraintBottom_toTopOf="@+id/dest"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,11 +39,11 @@
         tools:ignore="MissingConstraints" />
 
     <Spinner
-        android:id="@+id/dest"
+        android:id="@+id/spinner"
         android:layout_width="142dp"
         android:layout_height="28dp"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/message"
-        tools:layout_editor_absoluteX="2dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
