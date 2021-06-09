@@ -54,7 +54,7 @@ public class AskPermissionActivity extends Activity {
         contactsDS.addContact(contact);
 
 
-        textBox.append("user6 requesting entry!");
+        textBox.append(getIntent().getStringExtra("User") + " requesting entry!");
 
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
